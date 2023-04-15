@@ -10,10 +10,8 @@ import AVFoundation
 
 struct MorseDetails: View {
     let morseCode: MorseCode
-    let device = AVCaptureDevice.default(for: .video)
     
     var body: some View {
-        
         VStack {
             Text(morseCode.title)
                 .font(.system(size: 80).weight(.black))
@@ -50,38 +48,50 @@ struct MorseDetails: View {
                         .scaledToFit()
                         .frame(width: 80)
                 }
+                
+                Button {
+                    // sound
+                } label: {
+                    Image(systemName: "waveform.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80)
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
     }
-    
-    
-    func flashMorseCode(morseCode: MorseCode) {
-           let device = AVCaptureDevice.default(for: .video)
-           try? device?.lockForConfiguration()
-           
-           for character in morseCode.description {
-               switch character {
-               case "-":
-                   try? device?.setTorchModeOn(level: 1.0)
-                   Thread.sleep(forTimeInterval: 0.7)
-                   device?.torchMode = .off
-                   Thread.sleep(forTimeInterval: 0.2)
-               case "•":
-                   try? device?.setTorchModeOn(level: 1.0)
-                   Thread.sleep(forTimeInterval: 0.3)
-                   device?.torchMode = .off
-                   Thread.sleep(forTimeInterval: 0.2)
-               case " ":
-                   Thread.sleep(forTimeInterval: 0.55)
-               default:
-                   break
-               }
-           }
-           device?.unlockForConfiguration()
-       }
 }
+
+
+
+// Morse Code - Flash
+func flashMorseCode(morseCode: MorseCode) {
+       let device = AVCaptureDevice.default(for: .video)
+       try? device?.lockForConfiguration()
+       
+       for character in morseCode.description {
+           switch character {
+           case "-":
+               try? device?.setTorchModeOn(level: 1.0)
+               Thread.sleep(forTimeInterval: 0.7)
+               device?.torchMode = .off
+               Thread.sleep(forTimeInterval: 0.2)
+           case "•":
+               try? device?.setTorchModeOn(level: 1.0)
+               Thread.sleep(forTimeInterval: 0.3)
+               device?.torchMode = .off
+               Thread.sleep(forTimeInterval: 0.2)
+           case " ":
+               Thread.sleep(forTimeInterval: 0.55)
+           default:
+               break
+           }
+       }
+       device?.unlockForConfiguration()
+}
+
 
 struct MorseDetails_Previews: PreviewProvider {
     static var previews: some View {
