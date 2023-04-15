@@ -11,10 +11,11 @@ import AVFoundation
 struct MorseDetails: View {
     let morseCode: MorseCode
     
+    
     var body: some View {
         VStack {
             Text(morseCode.title)
-                .font(.system(size: 80).weight(.black))
+                .font(.system(size: 90).weight(.black))
                 .foregroundColor(.black)
                 .padding(.bottom, 50)
             
@@ -29,6 +30,7 @@ struct MorseDetails: View {
                         Capsule()
                             .frame(width: 80, height: 50)
                             .foregroundColor(.gray)
+                        
                     case " ":
                         Text(" ")
                     default:
@@ -36,7 +38,6 @@ struct MorseDetails: View {
                     }
                 }
             }
-            .padding(.bottom, 30)
             
             // Sound & Flash
             HStack (spacing: 100) {
@@ -46,7 +47,8 @@ struct MorseDetails: View {
                     Image(systemName: "lightbulb.led.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 80)
+                        .frame(width: 60)
+                        .foregroundColor(.blue)
                 }
                 
                 Button {
@@ -56,11 +58,14 @@ struct MorseDetails: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80)
+                        .foregroundColor(.blue)
                 }
             }
+            .padding(.top, 100)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.white)
+        .background( LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.2), .indigo.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            .ignoresSafeArea())
     }
 }
 
@@ -68,28 +73,28 @@ struct MorseDetails: View {
 
 // Morse Code - Flash
 func flashMorseCode(morseCode: MorseCode) {
-       let device = AVCaptureDevice.default(for: .video)
-       try? device?.lockForConfiguration()
-       
-       for character in morseCode.description {
-           switch character {
-           case "-":
-               try? device?.setTorchModeOn(level: 1.0)
-               Thread.sleep(forTimeInterval: 0.7)
-               device?.torchMode = .off
-               Thread.sleep(forTimeInterval: 0.2)
-           case "•":
-               try? device?.setTorchModeOn(level: 1.0)
-               Thread.sleep(forTimeInterval: 0.3)
-               device?.torchMode = .off
-               Thread.sleep(forTimeInterval: 0.2)
-           case " ":
-               Thread.sleep(forTimeInterval: 0.55)
-           default:
-               break
-           }
-       }
-       device?.unlockForConfiguration()
+    let device = AVCaptureDevice.default(for: .video)
+    try? device?.lockForConfiguration()
+    
+    for character in morseCode.description {
+        switch character {
+        case "-":
+            try? device?.setTorchModeOn(level: 1.0)
+            Thread.sleep(forTimeInterval: 0.7)
+            device?.torchMode = .off
+            Thread.sleep(forTimeInterval: 0.2)
+        case "•":
+            try? device?.setTorchModeOn(level: 1.0)
+            Thread.sleep(forTimeInterval: 0.3)
+            device?.torchMode = .off
+            Thread.sleep(forTimeInterval: 0.2)
+        case " ":
+            Thread.sleep(forTimeInterval: 0.55)
+        default:
+            break
+        }
+    }
+    device?.unlockForConfiguration()
 }
 
 

@@ -33,7 +33,7 @@ struct MorseCard: View {
                     .multilineTextAlignment(.center)
             }
             .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [.black, .purple]), startPoint: .top, endPoint: .bottomTrailing))
+            .background(LinearGradient(gradient: Gradient(colors: [.black, .indigo]), startPoint: .top, endPoint: .bottomTrailing))
             .cornerRadius(20)
             .sheet(isPresented: $isShowingDetails) {
                 MorseDetails(morseCode: morseCode)

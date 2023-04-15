@@ -17,9 +17,6 @@ struct MorseCodeChart: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("Morse Code Chart")
-                    .font(.system(size: 40).weight(.black))
-                    .padding()
                 MorseGrid()
             }
         }

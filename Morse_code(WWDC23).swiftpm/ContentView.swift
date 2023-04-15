@@ -18,7 +18,7 @@ struct ContentView: View {
                     Text("Morse Code")
                         .font(.system(size: 60).weight(.black))
                         .foregroundColor(.white)
-                        .padding(10)
+                        .padding(.top, 10)
                     
                     // Description
                     Text("This is an app that simply explains Morse code and allows you to practice.")
@@ -37,21 +37,21 @@ struct ContentView: View {
                                 .frame(width: 500, height: 60)
                                 .padding(12)
                                 .background(.black.opacity(0.6))
-                                .foregroundColor(.blue)
+                                .foregroundColor(.green)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
-                                        .stroke(.blue.opacity(0.5), lineWidth: 4)
+                                        .stroke(.green.opacity(0.5), lineWidth: 4)
                                 )
                                 .cornerRadius(12)
-                                .shadow(color: .blue.opacity(0.2), radius: 7)
+                                .shadow(color: .green.opacity(0.2), radius: 7)
                                 .padding(.bottom, 16)
                         }
                         
-                        HStack {
+                        HStack (spacing: 10) {
                             NavigationLink(destination: MorseCodeChart()) {
                                 Text("Morse Code Chart")
                                     .font(.system(size: 24).weight(.semibold))
-                                    .frame(width: 240, height: 60)
+                                    .frame(width: 232, height: 60)
                                     .padding(12)
                                     .background(.black.opacity(0.6))
                                     .foregroundColor(.blue)
@@ -63,10 +63,11 @@ struct ContentView: View {
                                     .shadow(color: .blue.opacity(0.2), radius: 7)
                                     .padding(.bottom, 16)
                             }
+                            
                             NavigationLink(destination: LearnMorse()) {
                                 Text("Morse Code Tree")
                                     .font(.system(size: 24).weight(.semibold))
-                                    .frame(width: 240, height: 60)
+                                    .frame(width: 232, height: 60)
                                     .padding(12)
                                     .background(.black.opacity(0.6))
                                     .foregroundColor(.blue)

@@ -48,13 +48,22 @@ struct MorseGrid: View {
     ]
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),  GridItem(.flexible())], spacing: 15) {
-                ForEach(morseCodes, id: \.self) { morseCode in
-                    MorseCard(morseCode: morseCode)
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.15), .indigo.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .ignoresSafeArea()
+            ScrollView {
+                Text("Morse Code Chart")
+                    .font(.system(size: 40).weight(.black))
+                    .foregroundColor(.indigo)
+                    .padding()
+                
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),  GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                    ForEach(morseCodes, id: \.self) { morseCode in
+                        MorseCard(morseCode: morseCode)
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
     }
 }
