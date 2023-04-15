@@ -12,7 +12,7 @@ struct LearnMorse: View {
        
        var body: some View {
            ZStack {
-               LinearGradient(gradient: Gradient(colors: [.blue, .black.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+               LinearGradient(gradient: Gradient(colors: [.green.opacity(0.15), .indigo.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                    .ignoresSafeArea()
                
                if isNextScreenShown {

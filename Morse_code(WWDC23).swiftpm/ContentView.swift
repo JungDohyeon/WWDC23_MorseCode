@@ -82,8 +82,8 @@ struct ContentView: View {
                             
                         }
                         
-                        NavigationLink(destination: GameMorse()) {
-                            Text("Game with MorseCode!")
+                        NavigationLink(destination: eyeblinkingMorse()) {
+                            Text("Game with Morse Code!")
                                 .font(.system(size: 24).weight(.semibold))
                                 .frame(width: 500, height: 60)
                                 .padding(12)
@@ -99,8 +99,6 @@ struct ContentView: View {
                         }
                     }.padding(.bottom, 24)
                 }
-                
-                
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }

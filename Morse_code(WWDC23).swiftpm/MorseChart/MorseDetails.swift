@@ -40,7 +40,7 @@ struct MorseDetails: View {
             }
             
             // Sound & Flash
-            HStack (spacing: 100) {
+            HStack (spacing: 110) {
                 Button {
                     flashMorseCode(morseCode: morseCode)
                 } label: {
@@ -62,6 +62,17 @@ struct MorseDetails: View {
                 }
             }
             .padding(.top, 100)
+            .padding(.bottom, 30)
+            
+            // Sound & Flash
+            HStack (spacing: 70) {
+                Text("Light Flash")
+                    .font(.system(size: 20).weight(.black))
+                    .foregroundColor(.black)
+                Text("Sound Play")
+                    .font(.system(size: 20).weight(.black))
+                    .foregroundColor(.black)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background( LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.2), .indigo.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)

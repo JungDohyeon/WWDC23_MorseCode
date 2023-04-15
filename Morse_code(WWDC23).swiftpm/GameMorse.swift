@@ -11,13 +11,13 @@ import SwiftUI
 struct GameMorse: View {
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.purple, .black.opacity(0.7)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors: [.purple.opacity(0.25), .indigo.opacity(0.4)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             
             VStack {
                 Text("Select Games")
                     .font(.system(size: 60).weight(.black))
-                    .foregroundColor(.white)
+                    .foregroundColor(.purple)
                     .padding(.bottom, 40)
                 HStack (spacing: 20){
                     
