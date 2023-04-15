@@ -1,48 +1,11 @@
 //
-//  MorseCodeChart.swift
+//  MorseGrid.swift
 //  Morse_code(WWDC23)
 //
 //  Created by 정도현 on 2023/04/15.
 //
 
 import SwiftUI
-
-struct MorseCard: View {
-    let morseCode: MorseCode
-    
-    @State private var isShowingDetails = false
-    
-    
-    var body: some View {
-        Button {
-            isShowingDetails.toggle()
-        } label: {
-            VStack {
-                Image(systemName: morseCode.image)
-                    .font(.system(size: 60))
-                    .foregroundColor(.white)
-                    .padding(.bottom, 10)
-                
-                Text(morseCode.title)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                
-                Text(morseCode.description)
-                    .font(.body)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-            }
-            .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [.black, .purple]), startPoint: .top, endPoint: .bottomTrailing))
-            .cornerRadius(20)
-            .sheet(isPresented: $isShowingDetails) {
-                MorseDetails(morseCode: morseCode)
-            }
-        }
-    }
-}
-
 
 struct MorseGrid: View {
     let morseCodes = [
@@ -71,7 +34,17 @@ struct MorseGrid: View {
         MorseCode(title: "W", description: "•--", image: "w.circle.fill"),
         MorseCode(title: "X", description: "-••-", image: "x.circle.fill"),
         MorseCode(title: "Y", description: "-•--", image: "y.circle.fill"),
-        MorseCode(title: "Z", description: "--••", image: "z.circle.fill")
+        MorseCode(title: "Z", description: "--••", image: "z.circle.fill"),
+        MorseCode(title: "1", description: "•----", image: "1.circle.fill"),
+        MorseCode(title: "2", description: "••---", image: "2.circle.fill"),
+        MorseCode(title: "3", description: "•••--", image: "3.circle.fill"),
+        MorseCode(title: "4", description: "••••-", image: "4.circle.fill"),
+        MorseCode(title: "5", description: "•••••", image: "5.circle.fill"),
+        MorseCode(title: "6", description: "-••••", image: "6.circle.fill"),
+        MorseCode(title: "7", description: "--•••", image: "7.circle.fill"),
+        MorseCode(title: "8", description: "---••", image: "8.circle.fill"),
+        MorseCode(title: "9", description: "----•", image: "9.circle.fill"),
+        MorseCode(title: "0", description: "-----", image: "0.circle.fill")
     ]
     
     var body: some View {
@@ -86,27 +59,8 @@ struct MorseGrid: View {
     }
 }
 
-struct MorseCode: Hashable {
-    let title: String
-    let description: String
-    let image: String
-}
-
-struct MorseCodeChart: View {
-    var body: some View {
-        ZStack {
-            VStack {
-                Text("Morse Code Chart")
-                    .font(.system(size: 40).weight(.black))
-                    .padding()
-                MorseGrid()
-            }
-        }
-    }
-}
-
-struct MorseCodeChart_Previews: PreviewProvider {
+struct MorseGrid_Previews: PreviewProvider {
     static var previews: some View {
-        MorseCodeChart()
+        MorseGrid()
     }
 }

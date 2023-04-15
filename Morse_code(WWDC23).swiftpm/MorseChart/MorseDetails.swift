@@ -48,7 +48,7 @@ struct MorseDetails: View {
                     Image(systemName: "lightbulb.led.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100)
+                        .frame(width: 80)
                 }
             }
         }
