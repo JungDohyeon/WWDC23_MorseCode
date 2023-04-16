@@ -83,34 +83,6 @@ struct MorseDetails: View {
 }
 
 
-
-// Morse Code - Flash
-func flashMorseCode(morseCode: String) {
-    let device = AVCaptureDevice.default(for: .video)
-    try? device?.lockForConfiguration()
-    
-    for character in morseCode {
-        switch character {
-        case "-":
-            try? device?.setTorchModeOn(level: 1.0)
-            Thread.sleep(forTimeInterval: 0.7)
-            device?.torchMode = .off
-            Thread.sleep(forTimeInterval: 0.2)
-        case "•":
-            try? device?.setTorchModeOn(level: 1.0)
-            Thread.sleep(forTimeInterval: 0.3)
-            device?.torchMode = .off
-            Thread.sleep(forTimeInterval: 0.2)
-        case " ":
-            Thread.sleep(forTimeInterval: 0.55)
-        default:
-            break
-        }
-    }
-    device?.unlockForConfiguration()
-}
-
-
 struct MorseDetails_Previews: PreviewProvider {
     static var previews: some View {
         MorseDetails(morseCode: MorseCode(title: "Z", description: "- - • •", image: "capsule.fill"))

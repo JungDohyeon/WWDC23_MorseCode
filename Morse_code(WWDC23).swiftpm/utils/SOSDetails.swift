@@ -32,7 +32,6 @@ struct SOSDetails: View {
             }
         }
         
-        // Sound & Flash
         HStack (spacing: 110) {
             Button {
                 flashMorseCode(morseCode: "••• --- •••")
@@ -56,8 +55,7 @@ struct SOSDetails: View {
         }
         .padding(.top, 100)
         .padding(.bottom, 30)
-        
-        // Sound & Flash
+    
         HStack (spacing: 70) {
             Text("Light Flash")
                 .font(.system(size: 20).weight(.black))
