@@ -20,7 +20,7 @@ struct leadingMenu: View {
 }
 
 
-struct trailingMenu: View {
+struct trailingMenu1: View {
     @State private var isShowingDetails = false
     
     var body: some View {
@@ -39,6 +39,21 @@ struct trailingMenu: View {
                 SOSDetails()
             }
             
+        }
+    }
+}
+
+struct trailingMenu2: View {
+    @State private var isShowingDetails = false
+    
+    var body: some View {
+        Button {
+            isShowingDetails.toggle()
+        } label: {
+            Image(systemName: "sos.circle")
+        }
+        .sheet(isPresented: $isShowingDetails) {
+            SOSDetails()
         }
     }
 }

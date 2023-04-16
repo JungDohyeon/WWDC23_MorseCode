@@ -3,7 +3,7 @@ import AVFoundation
 
 class MorseCodePlayer {
     let dotDuration = 0.11 // dot sounds duration
-    let dashDuration = 0.3 //dot sounds duration
+    let dashDuration = 0.28 // dot sounds duration
     let pauseDuration = 0.1
     
     var dotPlayer: AVAudioPlayer?
@@ -41,7 +41,6 @@ class MorseCodePlayer {
                 default:
                     break
                 }
-                
                 Thread.sleep(forTimeInterval: self.pauseDuration)
             }
         }

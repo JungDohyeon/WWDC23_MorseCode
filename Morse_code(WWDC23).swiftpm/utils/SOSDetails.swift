@@ -14,17 +14,20 @@ struct SOSDetails: View {
             .foregroundColor(.red)
             .padding(.bottom, 50)
         
-        HStack(spacing: 7){
+        HStack(spacing: 10){
             ForEach(0..<3) { _ in
                 Circle()
                     .frame(width: 40, height: 40)
                     .foregroundColor(.gray)
             }
+           
+            Text(" ")
             ForEach(0..<3) { _ in
                 Capsule()
                     .frame(width: 70, height: 40)
                     .foregroundColor(.gray)
             }
+            Text(" ")
             ForEach(0..<3) { _ in
                 Circle()
                     .frame(width: 40, height: 40)

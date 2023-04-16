@@ -49,7 +49,7 @@ struct LearnMorse1: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading: leadingMenu(),
-            trailing: trailingMenu()
+            trailing: trailingMenu1()
         )
     }
 }

@@ -51,11 +51,20 @@ struct MorseGrid: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.15), .indigo.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
+            
+            
             ScrollView {
-                Text("Morse Code Chart")
-                    .font(.system(size: 40).weight(.black))
-                    .foregroundColor(.indigo)
-                    .padding()
+                LinearGradient(
+                    colors: [.blue.opacity(0.4), .blue, .indigo, .purple],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+                .mask(
+                    Text("Morse Code Chart")
+                        .font(Font.system(size: 46, weight: .bold))
+                        .multilineTextAlignment(.center)
+                )
+                .frame(width: 800, height: 100)
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),  GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                     ForEach(morseCodes, id: \.self) { morseCode in
@@ -64,11 +73,12 @@ struct MorseGrid: View {
                 }
                 .padding()
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(
+                leading: leadingMenu(),
+                trailing: trailingMenu2()
+            )
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(
-            leading: leadingMenu()
-        )
     }
 }
 
