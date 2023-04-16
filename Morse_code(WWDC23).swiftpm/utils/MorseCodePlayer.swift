@@ -25,12 +25,12 @@ class MorseCodePlayer {
         }
     }
     
-    func playCode(_ code: String) {
+    func playCode(code: String) {
         // Use DispatchQueue to play characters sequentially
         DispatchQueue.global(qos: .userInteractive).async {
             for char in code {
                 switch char {
-                case ".":
+                case "•":
                     self.dotPlayer?.play()
                     Thread.sleep(forTimeInterval: self.dotDuration)
                 case "-":

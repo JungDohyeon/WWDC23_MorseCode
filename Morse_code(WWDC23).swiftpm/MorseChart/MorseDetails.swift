@@ -39,8 +39,9 @@ struct MorseDetails: View {
                 }
             }
             
-            // Sound & Flash
+            // Flash & Sound
             HStack (spacing: 110) {
+                // Flash
                 Button {
                     flashMorseCode(morseCode: morseCode.description)
                 } label: {
@@ -51,8 +52,9 @@ struct MorseDetails: View {
                         .foregroundColor(.blue)
                 }
                 
+                // Sound
                 Button {
-                    // sound
+                    MorseCodePlayer().playCode(code: morseCode.description)
                 } label: {
                     Image(systemName: "waveform.circle")
                         .resizable()
@@ -64,7 +66,7 @@ struct MorseDetails: View {
             .padding(.top, 100)
             .padding(.bottom, 30)
             
-            // Sound & Flash
+            // Icon Description
             HStack (spacing: 70) {
                 Text("Light Flash")
                     .font(.system(size: 20).weight(.black))

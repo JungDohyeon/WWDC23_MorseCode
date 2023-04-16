@@ -35,7 +35,7 @@ struct SOSDetails: View {
         // Sound & Flash
         HStack (spacing: 110) {
             Button {
-                flashMorseCode(morseCode: "•••---•••")
+                flashMorseCode(morseCode: "••• --- •••")
             } label: {
                 Image(systemName: "lightbulb.led.fill")
                     .resizable()
@@ -45,7 +45,7 @@ struct SOSDetails: View {
             }
             
             Button {
-                // sound
+                MorseCodePlayer().playCode(code: "••• --- •••")
             } label: {
                 Image(systemName: "waveform.circle")
                     .resizable()
