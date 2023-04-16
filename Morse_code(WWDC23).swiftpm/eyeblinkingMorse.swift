@@ -11,14 +11,14 @@ struct eyeblinkingMorse : View {
 
 struct ARViewContainer: UIViewRepresentable {
     func makeUIView(context: Context) -> ARView {
-           let arView = ARView(frame: .zero)
-           let config = ARFaceTrackingConfiguration()
-           config.isWorldTrackingEnabled = false // 카메라 전환을 위해 false로 설정
-           config.isLightEstimationEnabled = true
-           arView.session.run(config, options: [])
-           arView.session.delegate = context.coordinator // ARViewDelegate 지정
-           return arView
-       }
+        let arView = ARView(frame: .zero)
+        let config = ARFaceTrackingConfiguration()
+        config.isWorldTrackingEnabled = false
+        config.isLightEstimationEnabled = true
+        arView.session.run(config, options: [])
+        arView.session.delegate = context.coordinator
+        return arView
+    }
     
     func updateUIView(_ uiView: ARView, context: Context) {}
     
