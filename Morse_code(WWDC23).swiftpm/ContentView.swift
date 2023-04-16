@@ -12,6 +12,7 @@ struct ContentView: View {
                         .scaledToFit()
                         .frame(width: 200)
                         .padding(.bottom, 20)
+                        .padding(.top, 15)
                         .foregroundColor(.pink)
                         .shadow(color: .white.opacity(0.3), radius: 7)
                     
@@ -31,7 +32,7 @@ struct ContentView: View {
                     
                     // Navigation Buttons
                     VStack {
-                        NavigationLink(destination: LearnMorse()) {
+                        NavigationLink(destination: LearnMorse1()) {
                             Text("Learn about Morse Code")
                                 .font(.system(size: 24).weight(.semibold))
                                 .frame(width: 500, height: 60)
@@ -64,7 +65,7 @@ struct ContentView: View {
                                     .padding(.bottom, 16)
                             }
                             
-                            NavigationLink(destination: LearnMorse()) {
+                            NavigationLink(destination: LearnSceneGroup()) {
                                 Text("Morse Code Tree")
                                     .font(.system(size: 24).weight(.semibold))
                                     .frame(width: 232, height: 60)
@@ -79,11 +80,10 @@ struct ContentView: View {
                                     .shadow(color: .blue.opacity(0.2), radius: 7)
                                     .padding(.bottom, 16)
                             }
-                            
                         }
                         
                         NavigationLink(destination: EyeblinkingMorse()) {
-                            Text("Game with Morse Code!")
+                            Text("AR Eye Blinking to Morse Code")
                                 .font(.system(size: 24).weight(.semibold))
                                 .frame(width: 500, height: 60)
                                 .padding(12)
@@ -100,6 +100,10 @@ struct ContentView: View {
                     }.padding(.bottom, 24)
                 }
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .navigationBarBackButtonHidden(true)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea(.all)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }

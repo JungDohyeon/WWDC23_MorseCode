@@ -9,12 +9,26 @@ struct EyeblinkingMorse: View {
         VStack {
             ARViewContainer(morseCode: $morseCode)
                 .edgesIgnoringSafeArea(.all)
-            Text(morseCode)
-                .font(.system(size: 32))
-                .padding()
+            HStack {
+                Text(morseCode)
+                    .font(.system(size: 32))
+                    .padding()
+                
+                
+                // ARview까지 업데이트가 안됨.
+                Button(action: {
+                    if !morseCode.isEmpty {
+                        morseCode.removeLast()
+                    }
+                }) {
+                    Image(systemName: "delete.left")
+                        .font(.system(size: 24))
+                }
+            }
         }
     }
 }
+
 
 struct ARViewContainer: UIViewRepresentable {
     @Binding var morseCode: String

@@ -42,7 +42,7 @@ struct MorseDetails: View {
             // Sound & Flash
             HStack (spacing: 110) {
                 Button {
-                    flashMorseCode(morseCode: morseCode)
+                    flashMorseCode(morseCode: morseCode.description)
                 } label: {
                     Image(systemName: "lightbulb.led.fill")
                         .resizable()
@@ -83,11 +83,11 @@ struct MorseDetails: View {
 
 
 // Morse Code - Flash
-func flashMorseCode(morseCode: MorseCode) {
+func flashMorseCode(morseCode: String) {
     let device = AVCaptureDevice.default(for: .video)
     try? device?.lockForConfiguration()
     
-    for character in morseCode.description {
+    for character in morseCode {
         switch character {
         case "-":
             try? device?.setTorchModeOn(level: 1.0)
