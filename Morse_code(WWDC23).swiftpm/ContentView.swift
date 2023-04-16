@@ -82,7 +82,7 @@ struct ContentView: View {
                             
                         }
                         
-                        NavigationLink(destination: eyeblinkingMorse()) {
+                        NavigationLink(destination: EyeblinkingMorse()) {
                             Text("Game with Morse Code!")
                                 .font(.system(size: 24).weight(.semibold))
                                 .frame(width: 500, height: 60)

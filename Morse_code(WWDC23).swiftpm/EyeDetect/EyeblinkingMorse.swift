@@ -2,14 +2,23 @@ import SwiftUI
 import RealityKit
 import ARKit
 
-struct eyeblinkingMorse : View {
+struct EyeblinkingMorse: View {
+    @State private var morseCode: String = ""
+    
     var body: some View {
-        ARViewContainer()
-            .edgesIgnoringSafeArea(.all)
+        VStack {
+            ARViewContainer(morseCode: $morseCode)
+                .edgesIgnoringSafeArea(.all)
+            Text(morseCode)
+                .font(.system(size: 32))
+                .padding()
+        }
     }
 }
 
 struct ARViewContainer: UIViewRepresentable {
+    @Binding var morseCode: String
+    
     func makeUIView(context: Context) -> ARView {
         let arView = ARView(frame: .zero)
         let config = ARFaceTrackingConfiguration()
@@ -23,19 +32,24 @@ struct ARViewContainer: UIViewRepresentable {
     func updateUIView(_ uiView: ARView, context: Context) {}
     
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(parent: self)
     }
     
-    class Coordinator: NSObject, ARSessionDelegate { // ARSessionDelegate 채택
+    class Coordinator: NSObject, ARSessionDelegate {
+        var parent: ARViewContainer?
         var leftEyeBlinkValue: Float = 0
         var rightEyeBlinkValue: Float = 0
         var blinkStartedAt: Date?
         var blinkEndedAt: Date?
+        var morseCode: String = ""
+        
+        init(parent: ARViewContainer) {
+            self.parent = parent
+        }
         
         func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
             guard let faceAnchor = anchors.first(where: { $0 is ARFaceAnchor }) as? ARFaceAnchor else { return }
             
-            // 눈 깜빡임 감지
             leftEyeBlinkValue = faceAnchor.blendShapes[.eyeBlinkLeft]?.floatValue ?? 0.0
             rightEyeBlinkValue = faceAnchor.blendShapes[.eyeBlinkRight]?.floatValue ?? 0.0
             
@@ -44,18 +58,15 @@ struct ARViewContainer: UIViewRepresentable {
                     blinkStartedAt = Date()
                 }
             } else {
-                if blinkStartedAt != nil {
+                if let startedAt = blinkStartedAt {
                     blinkEndedAt = Date()
-                    if let startedAt = blinkStartedAt, let endedAt = blinkEndedAt {
-                        let blinkDuration = endedAt.timeIntervalSince(startedAt)
-                        let _ = print("Blink duration: \(blinkDuration) seconds")
-                        // 눈 감았다 뜬 시간 측정 기능 추가
-                        let closedDuration = endedAt.timeIntervalSince(startedAt)
-                        let _ = print("Eyes closed for \(closedDuration) seconds")
-                    }
-                    blinkStartedAt = nil
-                    blinkEndedAt = nil
+                    let blinkDuration = blinkEndedAt!.timeIntervalSince(startedAt)
+                    let morseSymbol = blinkDuration > 0.4 ? "-" : "•"
+                    morseCode += morseSymbol
+                    parent?.morseCode = morseCode
                 }
+                blinkStartedAt = nil
+                blinkEndedAt = nil
             }
         }
     }
