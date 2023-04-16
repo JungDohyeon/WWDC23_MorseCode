@@ -65,6 +65,10 @@ struct MorseGrid: View {
                 .padding()
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading: leadingMenu()
+        )
     }
 }
 

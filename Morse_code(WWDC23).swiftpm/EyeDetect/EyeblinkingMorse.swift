@@ -26,6 +26,10 @@ struct EyeblinkingMorse: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading: leadingMenu()
+        )
     }
 }
 

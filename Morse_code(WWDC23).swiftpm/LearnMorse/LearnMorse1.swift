@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LearnMorse1: View {
-    @Environment(\.presentationMode) var presentationMode
+   
+    @State private var isShow = false
     
     var body: some View {
         ZStack {
@@ -16,8 +17,6 @@ struct LearnMorse1: View {
                 .ignoresSafeArea()
             
             VStack{
-
-                Spacer()
                 LinearGradient(
                     colors: [.red, .blue, .green, .yellow],
                     startPoint: .leading,
@@ -28,48 +27,30 @@ struct LearnMorse1: View {
                         .font(Font.system(size: 46, weight: .bold))
                         .multilineTextAlignment(.center)
                 )
-                Spacer()
+            
                 
-                HStack {
-                    Text("Morse code is a method used in telecommunication to encode text characters as standardized sequences of two different signal durations, called dots and dashes, or dits and dahs.[3][4] Morse code is named after Samuel Morse, one of the inventors of the telegraph.")
-                        .padding(.bottom, 30)
+                if isShow {
+                    Spacer()
+                        .frame(height: isShow ? 100 : 0)
+                    
+                    HStack {
+                        Text("Morse code is a method used in telecommunication to encode text characters as standardized sequences of two different signal durations, called dots and dashes, or dits and dahs.[3][4] Morse code is named after Samuel Morse, one of the inventors of the telegraph.")
+                            .padding(.bottom, 40)
+                            .padding(.horizontal, 10)
+                    }
+                }
+            }
+            .onAppear {
+                withAnimation(.easeInOut(duration: 1).delay(1)) {
+                    isShow = true
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
-            leading:  Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                HStack {
-                    Image(systemName: "arrow.left") // 이미지를 추가합니다.
-                }
-            },
-            
+            leading: leadingMenu(),
             trailing: trailingMenu()
         )
-    }
-}
-
-struct trailingMenu: View {
-    @State private var isShowingDetails = false
-    
-    var body: some View {
-        HStack {
-            NavigationLink(destination: ContentView()) {
-                Image(systemName: "house")
-            }
-            
-            Button {
-                isShowingDetails.toggle()
-            } label: {
-                Image(systemName: "sos.circle")
-            }
-            .sheet(isPresented: $isShowingDetails) {
-                SOSDetails()
-            }
-
-        }
     }
 }
 

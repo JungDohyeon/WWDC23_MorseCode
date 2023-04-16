@@ -65,7 +65,7 @@ struct ContentView: View {
                                     .padding(.bottom, 16)
                             }
                             
-                            NavigationLink(destination: LearnSceneGroup()) {
+                            NavigationLink(destination: PlaySounds()) {
                                 Text("Morse Code Tree")
                                     .font(.system(size: 24).weight(.semibold))
                                     .frame(width: 232, height: 60)
