@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct LearnMorse1: View {
-   
+    
     @State private var isShow = false
+    @State private var isNext = false
     
     var body: some View {
         ZStack {
@@ -22,27 +23,34 @@ struct LearnMorse1: View {
                     startPoint: .leading,
                     endPoint: .trailing
                 )
+                .frame(width: isShow ? 600 : .infinity, height: isShow ? 250 : .infinity)
                 .mask(
                     Text("About Morse Code")
-                        .font(Font.system(size: 46, weight: .bold))
+                        .font(Font.system(size: 50, weight: .bold))
                         .multilineTextAlignment(.center)
                 )
-            
+                
                 
                 if isShow {
-                    Spacer()
-                        .frame(height: isShow ? 100 : 0)
-                    
-                    HStack {
-                        Text("Morse code is a method used in telecommunication to encode text characters as standardized sequences of two different signal durations, called dots and dashes, or dits and dahs.[3][4] Morse code is named after Samuel Morse, one of the inventors of the telegraph.")
-                            .padding(.bottom, 40)
-                            .padding(.horizontal, 10)
+                    Text(" The term Morse code refers to one of two systems for representing alphabetic letters, numbers, and symbols, etc., as arrangements of dots, dashes, and spaces. \n\n Codes are transmitted as visual or audible signals, such as electrical pulses of varying length or flashing lights.")
+                        .font(.system(size: 27, design: .rounded))
+                        .foregroundColor(.black)
+                        .padding(.top, 50)
+                        .padding(.horizontal, 40)
+                }
+                
+                if isNext {
+                    NavigationLink(destination: LearnMorse2()) {
+                        NextBtn()
                     }
                 }
             }
             .onAppear {
                 withAnimation(.easeInOut(duration: 1).delay(1)) {
                     isShow = true
+                }
+                withAnimation(.easeInOut(duration: 2).delay(2)) {
+                    isNext = true
                 }
             }
         }
@@ -53,6 +61,26 @@ struct LearnMorse1: View {
         )
     }
 }
+
+// Page Next Btn
+struct NextBtn: View {
+    var body: some View {
+        HStack {
+            Group {
+                Spacer()
+                Text("Tap to Next")
+                    .font(.system(size: 25, design: .monospaced))
+                Image(systemName: "chevron.right.2")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 25)
+                    .padding(.trailing, 50)
+            }
+            .frame(height: 100)
+        }
+    }
+}
+
 
 
 struct LearnMorse1_Previews: PreviewProvider {

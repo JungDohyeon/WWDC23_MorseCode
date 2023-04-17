@@ -27,6 +27,9 @@ struct trailingMenu1: View {
         HStack {
             NavigationLink(destination: ContentView()) {
                 Image(systemName: "house")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30)
                     .foregroundColor(.blue)
             }
             
@@ -34,6 +37,9 @@ struct trailingMenu1: View {
                 isShowingDetails.toggle()
             } label: {
                 Image(systemName: "sos.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50)
             }
             .sheet(isPresented: $isShowingDetails) {
                 SOSDetails()
@@ -51,6 +57,9 @@ struct trailingMenu2: View {
             isShowingDetails.toggle()
         } label: {
             Image(systemName: "sos.circle")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50)
         }
         .sheet(isPresented: $isShowingDetails) {
             SOSDetails()

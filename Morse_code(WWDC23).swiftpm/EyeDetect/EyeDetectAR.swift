@@ -65,8 +65,7 @@ struct ARViewContainer: UIViewRepresentable {
                     
                     let blinkDuration = blinkEndedAt!.timeIntervalSince(startedAt)
                     let morseSymbol = blinkDuration > 0.4 ? "-" : "•"
-                    morseCode += morseSymbol
-                    parent?.morseCode = morseCode
+                    parent?.$morseCode.wrappedValue += morseSymbol
                 }
                 blinkStartedAt = nil
             }
