@@ -9,13 +9,16 @@ import SwiftUI
 
 struct DecodeMorse: View {
     @Binding var userInput: String
+    @State private var validation = false
+    var userDecode: String = ""
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        
         ZStack {
+            Color.green.opacity(0.1).ignoresSafeArea()
             VStack{
                 LinearGradient(
-                    colors: [.red, .yellow, .indigo, .black],
+                    colors: [.red, .green, .indigo, .black],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -24,7 +27,7 @@ struct DecodeMorse: View {
                         .font(Font.system(size: 50, weight: .bold))
                         .multilineTextAlignment(.center)
                 )
-                .frame(height: 200)
+                .frame(height: 150)
                 
                 HStack {
                     Image(systemName: "lock.fill")
@@ -38,10 +41,11 @@ struct DecodeMorse: View {
                     Spacer()
                     
                     Text(userInput)
-                        .font(.custom(.concertOne, size: 30))
+                        .font(.custom(.concertOne, size: 25))
                     
                     Spacer()
                 }
+                .padding(.bottom, 15)
                 
                 HStack {
                     Image(systemName: "lock.open")
@@ -55,10 +59,57 @@ struct DecodeMorse: View {
                     Spacer()
                     
                     Text(decodeMorseCode(morseCode: userInput))
-                        .font(.custom(.muktaRegular, size: 30))
+                        .font(.custom(.muktaRegular, size: 25))
                     
                     Spacer()
                     
+                }
+                
+                
+                if decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CHARACTER!" {
+                    // Flash & Sound
+                    HStack (spacing: 110) {
+                        // Flash
+                        Button {
+                            flashMorseCode(morseCode: userInput)
+                        } label: {
+                            Image(systemName: "lightbulb.led.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 60)
+                                .foregroundColor(.blue)
+                        }
+                        
+                        // Sound
+                        Button {
+                            MorseCodePlayer().playCode(code: userInput)
+                        } label: {
+                            Image(systemName: "waveform.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80)
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    .padding(.top, 100)
+                    .padding(.bottom, 30)
+                    
+                    // Icon Description
+                    HStack (spacing: 70) {
+                        Text("Light Flash")
+                            .font(.system(size: 20).weight(.black))
+                            .foregroundColor(.black)
+                        Text("Sound Play")
+                            .font(.system(size: 20).weight(.black))
+                            .foregroundColor(.black)
+                    }
+                } else {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Retry")
+                    }
+                    .padding(.top, 30)
                 }
             }
         }
