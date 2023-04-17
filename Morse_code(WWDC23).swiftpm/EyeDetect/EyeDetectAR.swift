@@ -11,6 +11,7 @@ import ARKit
 
 struct ARViewContainer: UIViewRepresentable {
     @Binding var morseCode: String
+    @Binding var isPaused: Bool
     
     func makeUIView(context: Context) -> ARView {
         let arView = ARView(frame: .zero)
@@ -22,7 +23,13 @@ struct ARViewContainer: UIViewRepresentable {
         return arView
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func updateUIView(_ uiView: ARView, context: Context) {
+        if isPaused {
+               uiView.session.pause()
+           } else {
+               uiView.session.run(ARFaceTrackingConfiguration(), options: [])
+           }
+    }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -43,7 +50,11 @@ struct ARViewContainer: UIViewRepresentable {
         }
         
         func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-            guard let faceAnchor = anchors.first(where: { $0 is ARFaceAnchor }) as? ARFaceAnchor else { return }
+            guard !parent!.isPaused,
+                  let faceAnchor = anchors.first(where: { $0 is ARFaceAnchor }) as? ARFaceAnchor
+            else {
+                return
+            }
             
             leftEyeBlinkValue = faceAnchor.blendShapes[.eyeBlinkLeft]?.floatValue ?? 0.0
             rightEyeBlinkValue = faceAnchor.blendShapes[.eyeBlinkRight]?.floatValue ?? 0.0
@@ -51,18 +62,15 @@ struct ARViewContainer: UIViewRepresentable {
             if leftEyeBlinkValue > eyeCloseThreshHold && rightEyeBlinkValue > eyeCloseThreshHold  {
                 if blinkStartedAt == nil {
                     blinkStartedAt = Date()
-                    
                     if blinkEndedAt != nil {
                         if blinkStartedAt!.timeIntervalSince(blinkEndedAt!) > 1.0 {
-                            morseCode += " "
+                            parent?.$morseCode.wrappedValue += " "
                         }
                     }
                 }
-                
             } else {
                 if let startedAt = blinkStartedAt {
                     blinkEndedAt = Date()
-                    
                     let blinkDuration = blinkEndedAt!.timeIntervalSince(startedAt)
                     let morseSymbol = blinkDuration > 0.4 ? "-" : "•"
                     parent?.$morseCode.wrappedValue += morseSymbol
