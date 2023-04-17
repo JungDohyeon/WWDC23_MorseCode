@@ -11,7 +11,8 @@ import ARKit
 
 struct ARViewContainer: UIViewRepresentable {
     @Binding var morseCode: String
-    @Binding var isPaused: Bool
+    @Binding var isPausedSubmit: Bool
+    @Binding var isPausedHelp: Bool
     
     func makeUIView(context: Context) -> ARView {
         let arView = ARView(frame: .zero)
@@ -24,7 +25,7 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
-        if isPaused {
+        if isPausedSubmit || isPausedHelp {
                uiView.session.pause()
            } else {
                uiView.session.run(ARFaceTrackingConfiguration(), options: [])
@@ -50,7 +51,7 @@ struct ARViewContainer: UIViewRepresentable {
         }
         
         func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-            guard !parent!.isPaused,
+            guard !parent!.isPausedSubmit || !parent!.isPausedHelp,
                   let faceAnchor = anchors.first(where: { $0 is ARFaceAnchor }) as? ARFaceAnchor
             else {
                 return
@@ -63,7 +64,9 @@ struct ARViewContainer: UIViewRepresentable {
                 if blinkStartedAt == nil {
                     blinkStartedAt = Date()
                     if blinkEndedAt != nil {
-                        if blinkStartedAt!.timeIntervalSince(blinkEndedAt!) > 1.0 {
+                        if blinkStartedAt!.timeIntervalSince(blinkEndedAt!) > 1.3 {
+                            parent?.$morseCode.wrappedValue += "  "
+                        } else if blinkStartedAt!.timeIntervalSince(blinkEndedAt!) > 0.7 {
                             parent?.$morseCode.wrappedValue += " "
                         }
                     }

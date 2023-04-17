@@ -33,9 +33,7 @@ let package = Package(
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
             ],
             capabilities: [
-                .camera(purposeString: "this app using Camera Detection"),
-                .microphone(purposeString: "this app need audio"),
-                .mediaLibrary(purposeString: "thius app need")
+                .camera(purposeString: "this app using Camera Detection")
             ]
         )
     ],

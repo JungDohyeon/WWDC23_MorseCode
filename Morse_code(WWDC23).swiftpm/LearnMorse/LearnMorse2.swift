@@ -22,7 +22,7 @@ struct LearnMorse2: View {
                     startPoint: .leading,
                     endPoint: .trailing
                 )
-                .frame(width: isShow ? 600 : .infinity, height: isShow ? 300 : .infinity)
+                .frame(width: isShow ? 600 : .infinity, height: isShow ? 250 : .infinity)
                 .mask(
                     Text("Morse Code Rules")
                         .font(Font.system(size: 50, weight: .bold))

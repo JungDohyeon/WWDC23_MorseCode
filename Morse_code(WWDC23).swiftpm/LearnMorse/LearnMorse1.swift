@@ -23,7 +23,7 @@ struct LearnMorse1: View {
                     startPoint: .leading,
                     endPoint: .trailing
                 )
-                .frame(width: isShow ? 600 : .infinity, height: isShow ? 250 : .infinity)
+                .frame(width: isShow ? 600 : .infinity, height: isShow ? 200 : .infinity)
                 .mask(
                     Text("About Morse Code")
                         .font(Font.system(size: 50, weight: .bold))
@@ -33,7 +33,7 @@ struct LearnMorse1: View {
                 
                 if isShow {
                     Text(" The term Morse code refers to one of two systems for representing alphabetic letters, numbers, and symbols, etc., as arrangements of dots, dashes, and spaces. \n\n Codes are transmitted as visual or audible signals, such as electrical pulses of varying length or flashing lights.")
-                        .font(.system(size: 27, design: .rounded))
+                        .font(.custom(.muktaRegular, size: 27))
                         .foregroundColor(.black)
                         .padding(.top, 50)
                         .padding(.horizontal, 40)

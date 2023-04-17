@@ -11,9 +11,56 @@ struct DecodeMorse: View {
     @Binding var userInput: String
     
     var body: some View {
-        VStack {
-            Text("User Input: \(userInput)")
-            Text("After Decoding: \(decodeMorseCode(morseCode: userInput))")
+        
+        ZStack {
+            VStack{
+                LinearGradient(
+                    colors: [.red, .yellow, .indigo, .black],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+                .mask(
+                    Text("After Decoding")
+                        .font(Font.system(size: 50, weight: .bold))
+                        .multilineTextAlignment(.center)
+                )
+                .frame(height: 200)
+                
+                HStack {
+                    Image(systemName: "lock.fill")
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.blue)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                        .padding(.leading, 30)
+                        
+                    Spacer()
+                    
+                    Text(userInput)
+                        .font(.custom(.concertOne, size: 30))
+                    
+                    Spacer()
+                }
+                
+                HStack {
+                    Image(systemName: "lock.open")
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.blue)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                        .padding(.leading, 30)
+                    
+                    Spacer()
+                    
+                    Text(decodeMorseCode(morseCode: userInput))
+                        .font(.custom(.muktaRegular, size: 30))
+                    
+                    Spacer()
+                    
+                }
+            }
         }
     }
 }
@@ -60,16 +107,19 @@ let morseCodeMapping: [String: String] = [
 
 
 func decodeMorseCode(morseCode: String) -> String {
-    let codeArray = morseCode.split(separator: " ")
+    let codeArray = morseCode.components(separatedBy: "  ") .map { $0.split(separator: " ") }
     var decodedString = ""
-    
-    for code in codeArray {
-        if let decodedChar = morseCodeMapping[String(code)] {
-            decodedString += decodedChar
-        } else {
-            decodedString += "?"
+
+    for word in codeArray {
+        for code in word {
+            if let decodedChar = morseCodeMapping[String(code)] {
+                decodedString += decodedChar
+            } else {
+                return "Input has UNDEFINED CHARACTER!"
+            }
         }
+        decodedString += " "
     }
-    
-    return decodedString
+
+    return decodedString.trimmingCharacters(in: .whitespaces)
 }

@@ -4,20 +4,25 @@ import ARKit
 
 struct EyeblinkingMorse: View {
     @State private var morseCode: String = ""
-    @State private var isARSessionPaused = false
+    @State private var isARSessionPausedSubmit = false
     @State private var showModal = false
+    
+    @State private var isARSessionPausedHelp = false
+    @State private var showHelp = false
     
     var body: some View {
         VStack {
-            ARViewContainer(morseCode: $morseCode, isPaused: $isARSessionPaused)
+            ARViewContainer(morseCode: $morseCode, isPausedSubmit: $isARSessionPausedSubmit, isPausedHelp: $isARSessionPausedHelp)
                 .edgesIgnoringSafeArea(.all)
             
             HStack {
                 Spacer()
                 
                 Text(morseCode)
-                    .font(.system(size: 32))
+                    .font(.custom(.concertOne, size: 25))
+                    .foregroundColor(.white)
                     .padding()
+                
                 
                 Button {
                     if !morseCode.isEmpty {
@@ -25,30 +30,54 @@ struct EyeblinkingMorse: View {
                     }
                 } label: {
                     Image(systemName: "delete.left")
-                        .font(.system(size: 24))
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20)
                 }
                 
                 Spacer()
                 
                 Button {
                     showModal.toggle()
-                    isARSessionPaused = true
+                    isARSessionPausedSubmit = true
                 } label: {
-                    Text("Decode!")
+                    Image(systemName: "lock.open.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24)
                 }
                 .padding(.trailing, 20)
                 .sheet(isPresented: $showModal) {
                     DecodeMorse(userInput: $morseCode)
                         .onDisappear {
-                            isARSessionPaused = false
+                            isARSessionPausedSubmit = false
                         }
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
+        .background(.black)
         .navigationBarItems(
             leading: leadingMenu(),
-            trailing: trailingMenu2()
+            trailing:
+                HStack {
+                    Button {
+                        showHelp.toggle()
+                        isARSessionPausedHelp = true
+                    } label: {
+                        Image(systemName: "questionmark.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45)
+                    }
+                    .sheet(isPresented: $showHelp) {
+                        ARDescription()
+                            .onDisappear {
+                                isARSessionPausedHelp = false
+                            }
+                    }
+                    trailingMenu2()
+                }
         )
     }
 }

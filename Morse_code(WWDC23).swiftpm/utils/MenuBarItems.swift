@@ -39,7 +39,7 @@ struct trailingMenu1: View {
                 Image(systemName: "sos.circle")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 50)
+                    .frame(width: 45)
             }
             .sheet(isPresented: $isShowingDetails) {
                 SOSDetails()
@@ -59,7 +59,7 @@ struct trailingMenu2: View {
             Image(systemName: "sos.circle")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 50)
+                .frame(width: 45)
         }
         .sheet(isPresented: $isShowingDetails) {
             SOSDetails()
