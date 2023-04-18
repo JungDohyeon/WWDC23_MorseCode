@@ -13,16 +13,15 @@ struct LearnMorse2: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.green.opacity(0.15), .indigo.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+            Color.black.ignoresSafeArea()
             
             VStack{
                 LinearGradient(
-                    colors: [.red, .blue, .green, .yellow],
+                    colors: [.yellow, .green],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
-                .frame(width: isShow ? 600 : .infinity, height: isShow ? 250 : .infinity)
+                .frame(width: isShow ? 600 : .infinity, height: isShow ? 200 : .infinity)
                 .mask(
                     Text("Morse Code Rules")
                         .font(Font.system(size: 50, weight: .bold))

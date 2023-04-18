@@ -64,9 +64,12 @@ struct ARViewContainer: UIViewRepresentable {
                 if blinkStartedAt == nil {
                     blinkStartedAt = Date()
                     if blinkEndedAt != nil {
+                        // 단어 사이 간격
                         if blinkStartedAt!.timeIntervalSince(blinkEndedAt!) > 1.3 {
                             parent?.$morseCode.wrappedValue += "  "
-                        } else if blinkStartedAt!.timeIntervalSince(blinkEndedAt!) > 0.7 {
+                        }
+                        // 문자 사이 간격
+                        else if blinkStartedAt!.timeIntervalSince(blinkEndedAt!) > 0.7 {
                             parent?.$morseCode.wrappedValue += " "
                         }
                     }
@@ -75,6 +78,7 @@ struct ARViewContainer: UIViewRepresentable {
                 if let startedAt = blinkStartedAt {
                     blinkEndedAt = Date()
                     let blinkDuration = blinkEndedAt!.timeIntervalSince(startedAt)
+                    // 0.4초 기준으로 단, 장음 판단.
                     let morseSymbol = blinkDuration > 0.4 ? "-" : "•"
                     parent?.$morseCode.wrappedValue += morseSymbol
                 }

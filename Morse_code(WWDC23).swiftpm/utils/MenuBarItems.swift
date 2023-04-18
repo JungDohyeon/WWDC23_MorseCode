@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct leadingMenu: View {
-    @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        Button {
-            presentationMode.wrappedValue.dismiss()
-        } label: {
-            Image(systemName: "arrow.left")
-                .foregroundColor(.blue)
+        NavigationLink(destination: ContentView()) {
+            Image(systemName: "house")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 25)
+                .foregroundColor(.green)
         }
     }
 }
@@ -25,14 +25,6 @@ struct trailingMenu1: View {
     
     var body: some View {
         HStack {
-            NavigationLink(destination: ContentView()) {
-                Image(systemName: "house")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 30)
-                    .foregroundColor(.blue)
-            }
-            
             Button {
                 isShowingDetails.toggle()
             } label: {
@@ -44,7 +36,6 @@ struct trailingMenu1: View {
             .sheet(isPresented: $isShowingDetails) {
                 SOSDetails()
             }
-            
         }
     }
 }

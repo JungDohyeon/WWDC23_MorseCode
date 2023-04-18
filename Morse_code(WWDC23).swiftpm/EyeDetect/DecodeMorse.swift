@@ -31,12 +31,15 @@ struct DecodeMorse: View {
                 
                 HStack {
                     Image(systemName: "lock.fill")
-                        .frame(width: 50, height: 50)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
                         .foregroundColor(.blue)
-                        .background(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        .padding(10)
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
-                        .padding(.leading, 30)
+                        .padding(.leading, 20)
                         
                     Spacer()
                     
@@ -45,26 +48,42 @@ struct DecodeMorse: View {
                     
                     Spacer()
                 }
-                .padding(.bottom, 15)
+                .frame(height: 60)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.white)
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                )
+                .padding(.horizontal, 20)
                 
                 HStack {
-                    Image(systemName: "lock.open")
-                        .frame(width: 50, height: 50)
+                    Image(systemName: "lock.open.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
                         .foregroundColor(.blue)
-                        .background(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        .padding(10)
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
-                        .padding(.leading, 30)
+                        .padding(.leading, 20)
                     
                     Spacer()
                     
                     Text(decodeMorseCode(morseCode: userInput))
-                        .font(.custom(.muktaRegular, size: 25))
+                        .font(.custom(.concertOne, size: 25))
+                        .foregroundColor(decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CHARACTER!" ? .green : .red)
+                        .padding(.horizontal, 20)
                     
                     Spacer()
-                    
                 }
-                
+                .frame(height: 60)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.white)
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                )
+                .padding(.horizontal, 20)
                 
                 if decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CHARACTER!" {
                     // Flash & Sound
@@ -76,7 +95,7 @@ struct DecodeMorse: View {
                             Image(systemName: "lightbulb.led.fill")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 60)
+                                .frame(width: 50)
                                 .foregroundColor(.blue)
                         }
                         
@@ -87,7 +106,7 @@ struct DecodeMorse: View {
                             Image(systemName: "waveform.circle")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 80)
+                                .frame(width: 70)
                                 .foregroundColor(.blue)
                         }
                     }
@@ -107,9 +126,24 @@ struct DecodeMorse: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Retry")
+                        HStack {
+                            Image(systemName: "arrow.clockwise.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.white)
+                                .padding(10)
+                                .background(Color.red)
+                                .clipShape(Circle())
+                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                            
+                            Text("Retry")
+                                .font(.custom(.concertOne, size: 25))
+                                .foregroundColor(.red)
+                                .padding(.horizontal, 10)
+                        }
+                        .padding(.top, 120)
                     }
-                    .padding(.top, 30)
                 }
             }
         }
@@ -118,32 +152,32 @@ struct DecodeMorse: View {
 
 
 let morseCodeMapping: [String: String] = [
-    "•-": "a",
-    "-•••": "b",
-    "-•-•": "c",
-    "-••": "d",
-    "•": "e",
-    "••-•": "f",
-    "--•": "g",
-    "••••": "h",
-    "••": "i",
-    "•---": "j",
-    "-•-": "k",
-    "•-••": "l",
-    "--": "m",
-    "-•": "n",
-    "---": "o",
-    "•--•": "p",
-    "--•-": "q",
-    "•-•": "r",
-    "•••": "s",
-    "-": "t",
-    "••-": "u",
-    "•••-": "v",
-    "•--": "w",
-    "-••-": "x",
-    "-•--": "y",
-    "--••": "z",
+    "•-": "A",
+    "-•••": "B",
+    "-•-•": "C",
+    "-••": "D",
+    "•": "E",
+    "••-•": "F",
+    "--•": "G",
+    "••••": "H",
+    "••": "I",
+    "•---": "J",
+    "-•-": "K",
+    "•-••": "L",
+    "--": "M",
+    "-•": "N",
+    "---": "O",
+    "•--•": "P",
+    "--•-": "Q",
+    "•-•": "R",
+    "•••": "S",
+    "-": "T",
+    "••-": "U",
+    "•••-": "V",
+    "•--": "W",
+    "-••-": "X",
+    "-•--": "Y",
+    "--••": "Z",
     "-----": "0",
     "•----": "1",
     "••---": "2",
@@ -174,3 +208,10 @@ func decodeMorseCode(morseCode: String) -> String {
 
     return decodedString.trimmingCharacters(in: .whitespaces)
 }
+
+
+//struct DecodeMorse_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DecodeMorse()
+//    }
+//}

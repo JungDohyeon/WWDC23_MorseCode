@@ -4,17 +4,15 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+                Color.black.ignoresSafeArea()
                 VStack {
                     Image(systemName: "waveform")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 200)
+                        .frame(width: 180)
                         .padding(.bottom, 20)
                         .padding(.top, 15)
                         .foregroundColor(.pink)
-                        .shadow(color: .white.opacity(0.3), radius: 7)
                     
                     Text("Morse Eye")
                         .font(.system(size: 60).weight(.black))
@@ -25,10 +23,11 @@ struct ContentView: View {
                     // Description
                     Text("This app is an app that allows you to learn about Morse code simply and generate Morse code yourself using the time you close your eyes and open them.")
                         .font(.custom(.muktaRegular, size: 27))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("myGray"))
                         .multilineTextAlignment(.center)
+                        .frame(width: 760)
                         .padding(.horizontal)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 60)
                     
                     
                     // Navigation Buttons
@@ -49,12 +48,11 @@ struct ContentView: View {
                             .background(.black.opacity(0.75))
                             .foregroundColor(.green)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 12)
+                                RoundedRectangle(cornerRadius: 40)
                                     .stroke(.green.opacity(0.5), lineWidth: 4)
                             )
                             .cornerRadius(40)
                             .shadow(color: .green.opacity(0.2), radius: 7)
-                            
                         }
                         
                         NavigationLink(destination: MorseCodeChart()) {
@@ -73,7 +71,7 @@ struct ContentView: View {
                             .background(.black.opacity(0.75))
                             .foregroundColor(.blue)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 12)
+                                RoundedRectangle(cornerRadius: 40)
                                     .stroke(.blue.opacity(0.5), lineWidth: 4)
                             )
                             .cornerRadius(40)
@@ -97,7 +95,7 @@ struct ContentView: View {
                             .background(.black.opacity(0.75))
                             .foregroundColor(.purple)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 12)
+                                RoundedRectangle(cornerRadius: 40)
                                     .stroke(.purple.opacity(0.5), lineWidth: 4)
                             )
                             .cornerRadius(40)

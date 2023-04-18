@@ -10,37 +10,79 @@ import SwiftUI
 struct ARDescription: View {
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.green.opacity(0.15), .indigo.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             VStack {
-                LinearGradient(
-                    colors: [.red, .blue, .green, .yellow],
-                    startPoint: .leading,
-                    endPoint: .trailing
-                )
-                .mask(
-                    Text("How to Use ?")
-                        .font(Font.system(size: 50, weight: .bold))
-                        .multilineTextAlignment(.center)
-                )
-                .frame(height: 200)
+                Text("How to Use")
+                    .font(Font.custom("HelveticaNeue-Bold", size: 60))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding()
                 
-                Group {
-                    Text("look at the front camera")
-                    Text("Then blink your eyes while staring at the screen")
-                        .padding(.bottom, 50)
+                VStack {
+                    Text("Instructions")
+                        .font(Font.custom("HelveticaNeue-Bold", size: 30))
+                        .foregroundColor(.white)
+                        .padding(.top, 10)
+                    
+                    HStack {
+                        Image(systemName: "eye.fill")
+                            .font(.system(size: 25))
+                            .foregroundColor(.white)
+                        Text("Look at the front camera")
+                            .font(Font.custom("HelveticaNeue", size: 20))
+                            .foregroundColor(.white)
+                            .padding(.leading, 10)
+                    }
+                    
+                    HStack {
+                        Image(systemName: "eye.fill")
+                            .font(.system(size: 25))
+                            .foregroundColor(.white)
+                        Text("Blink your eyes while staring at the screen")
+                            .font(Font.custom("HelveticaNeue", size: 20))
+                            .foregroundColor(.white)
+                            .padding(.leading, 10)
+                    }
+                    .padding(.bottom, 50)
                 }
-                .font(.custom(.muktaRegular, size: 27))
                 
-                Text("Input Rules")
-                Group {
-                    Text("BlinkTime")
+                VStack {
+                    Text("Input Rules")
+                        .font(Font.custom("HelveticaNeue-Bold", size: 30))
+                        .foregroundColor(.white)
+                        .padding(.bottom, 20)
+                    
+                    HStack {
+                        Circle()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(.white)
+                            .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+                            .padding(.trailing, 10)
+                        Text("Close your eyes and open them before 0.4 seconds.")
+                            .font(Font.custom("HelveticaNeue", size: 20))
+                            .foregroundColor(.white)
+                            .padding(.leading, 10)
+                    }
+                    
+                    HStack {
+                        Capsule()
+                            .frame(width: 80, height: 40)
+                            .foregroundColor(.white)
+                            .overlay(Capsule().stroke(Color.gray, lineWidth: 2))
+                            .padding(.trailing, 10)
+                        Text("Close your eyes and open them after 0.4 seconds.")
+                            .font(Font.custom("HelveticaNeue", size: 20))
+                            .foregroundColor(.white)
+                            .padding(.leading, 10)
+                    }
                 }
+                .padding()
             }
-            
         }
     }
 }
+
 
 struct ARDescription_Previews: PreviewProvider {
     static var previews: some View {

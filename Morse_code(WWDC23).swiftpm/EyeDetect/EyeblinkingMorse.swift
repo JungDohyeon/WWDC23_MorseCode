@@ -15,7 +15,7 @@ struct EyeblinkingMorse: View {
             ARViewContainer(morseCode: $morseCode, isPausedSubmit: $isARSessionPausedSubmit, isPausedHelp: $isARSessionPausedHelp)
                 .edgesIgnoringSafeArea(.all)
             
-            HStack {
+            HStack(spacing: 20) {
                 Spacer()
                 
                 Text(morseCode)
@@ -23,24 +23,27 @@ struct EyeblinkingMorse: View {
                     .foregroundColor(.white)
                     .padding()
                 
-                
-                Button {
+                Button(action: {
                     if !morseCode.isEmpty {
                         morseCode.removeLast()
                     }
-                } label: {
+                }) {
                     Image(systemName: "delete.left")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20)
                 }
                 
-                Spacer()
+                Button(action: {
+                    morseCode = ""
+                }) {
+                    Text("Clear!")
+                }
                 
-                Button {
+                Button(action: {
                     showModal.toggle()
                     isARSessionPausedSubmit = true
-                } label: {
+                }) {
                     Image(systemName: "lock.open.fill")
                         .resizable()
                         .scaledToFit()
@@ -53,7 +56,11 @@ struct EyeblinkingMorse: View {
                             isARSessionPausedSubmit = false
                         }
                 }
+                
+                Spacer()
             }
+
+                
         }
         .navigationBarBackButtonHidden(true)
         .background(.black)
@@ -81,3 +88,11 @@ struct EyeblinkingMorse: View {
         )
     }
 }
+
+
+struct EyeblinkingMorse_Previews: PreviewProvider {
+    static var previews: some View {
+        EyeblinkingMorse()
+    }
+}
+

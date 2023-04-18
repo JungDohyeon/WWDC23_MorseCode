@@ -14,12 +14,10 @@ struct LearnMorse1: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.green.opacity(0.15), .indigo.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
-            
+            Color.black.ignoresSafeArea()
             VStack{
                 LinearGradient(
-                    colors: [.red, .blue, .green, .yellow],
+                    colors: [.yellow, .green],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -34,15 +32,13 @@ struct LearnMorse1: View {
                 if isShow {
                     Text(" The term Morse code refers to one of two systems for representing alphabetic letters, numbers, and symbols, etc., as arrangements of dots, dashes, and spaces. \n\n Codes are transmitted as visual or audible signals, such as electrical pulses of varying length or flashing lights.")
                         .font(.custom(.muktaRegular, size: 27))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("myGray"))
                         .padding(.top, 50)
                         .padding(.horizontal, 40)
                 }
                 
                 if isNext {
-                    NavigationLink(destination: LearnMorse2()) {
-                        NextBtn()
-                    }
+                    NextBtn()
                 }
             }
             .onAppear {
@@ -64,17 +60,34 @@ struct LearnMorse1: View {
 
 // Page Next Btn
 struct NextBtn: View {
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         HStack {
             Group {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "chevron.left.2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20)
+                        .padding(.leading, 50)
+                        .foregroundColor(Color("myDarkGray"))
+                }
+                
                 Spacer()
-                Text("Tap to Next")
-                    .font(.system(size: 25, design: .monospaced))
-                Image(systemName: "chevron.right.2")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 25)
-                    .padding(.trailing, 50)
+                
+                NavigationLink(destination: LearnMorse2()) {
+                    Text("Tap to Next")
+                        .font(.system(size: 20, design: .monospaced))
+                        .foregroundColor(Color("myDarkGray"))
+                    Image(systemName: "chevron.right.2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20)
+                        .padding(.trailing, 50)
+                        .foregroundColor(Color("myDarkGray"))
+                }
             }
             .frame(height: 100)
         }
