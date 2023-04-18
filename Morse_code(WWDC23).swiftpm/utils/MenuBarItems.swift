@@ -13,8 +13,9 @@ struct leadingMenu: View {
             Image(systemName: "house")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 25)
-                .foregroundColor(.green)
+                .frame(width: 30)
+                .foregroundColor(Color("myGray"))
+                .padding(.leading, 10)
         }
     }
 }
@@ -28,32 +29,21 @@ struct trailingMenu1: View {
             Button {
                 isShowingDetails.toggle()
             } label: {
-                Image(systemName: "sos.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 45)
+                Text("SOS")
+                    .font(.custom(.muktaBold, size: 20))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(.red)
+                    .foregroundColor(Color("myGray"))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 40)
+                            .stroke(.red.opacity(0.6), lineWidth: 5)
+                    )
+                    .cornerRadius(10)
             }
             .sheet(isPresented: $isShowingDetails) {
                 SOSDetails()
             }
-        }
-    }
-}
-
-struct trailingMenu2: View {
-    @State private var isShowingDetails = false
-    
-    var body: some View {
-        Button {
-            isShowingDetails.toggle()
-        } label: {
-            Image(systemName: "sos.circle")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 45)
-        }
-        .sheet(isPresented: $isShowingDetails) {
-            SOSDetails()
         }
     }
 }

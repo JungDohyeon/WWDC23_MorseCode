@@ -17,9 +17,9 @@ struct LearnMorse1: View {
             Color.black.ignoresSafeArea()
             VStack{
                 LinearGradient(
-                    colors: [.yellow, .green],
-                    startPoint: .leading,
-                    endPoint: .trailing
+                    colors: [.white, .pink],
+                    startPoint: .topLeading,
+                    endPoint: .bottom
                 )
                 .frame(width: isShow ? 600 : .infinity, height: isShow ? 200 : .infinity)
                 .mask(
@@ -38,7 +38,7 @@ struct LearnMorse1: View {
                 }
                 
                 if isNext {
-                    NextBtn()
+                    NextBtn1()
                 }
             }
             .onAppear {
@@ -59,7 +59,34 @@ struct LearnMorse1: View {
 }
 
 // Page Next Btn
-struct NextBtn: View {
+struct NextBtn1: View {
+    @Environment(\.presentationMode) var presentationMode
+    var body: some View {
+        HStack {
+            Group {
+                Spacer()
+                
+                NavigationLink(destination: LearnMorse2()) {
+                    Text("Next")
+                        .font(.system(size: 20, design: .monospaced))
+                        .foregroundColor(Color("myDarkGray"))
+                        .padding(.trailing, 5)
+                    Image(systemName: "chevron.right.2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20)
+                        .padding(.trailing, 50)
+                        .foregroundColor(Color("myDarkGray"))
+                }
+            }
+            .frame(height: 100)
+        }
+    }
+}
+
+
+// Page Next Btn
+struct NextBtn2: View {
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         HStack {
@@ -73,14 +100,19 @@ struct NextBtn: View {
                         .frame(width: 20)
                         .padding(.leading, 50)
                         .foregroundColor(Color("myDarkGray"))
+                        .padding(.trailing, 5)
+                    Text("Before")
+                        .font(.system(size: 20, design: .monospaced))
+                        .foregroundColor(Color("myDarkGray"))
                 }
                 
                 Spacer()
                 
                 NavigationLink(destination: LearnMorse2()) {
-                    Text("Tap to Next")
+                    Text("Next")
                         .font(.system(size: 20, design: .monospaced))
                         .foregroundColor(Color("myDarkGray"))
+                        .padding(.trailing, 5)
                     Image(systemName: "chevron.right.2")
                         .resizable()
                         .scaledToFit()

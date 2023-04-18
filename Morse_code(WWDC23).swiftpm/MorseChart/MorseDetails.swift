@@ -19,18 +19,17 @@ struct MorseDetails: View {
                 .foregroundColor(.black)
                 .padding(.bottom, 50)
             
-            HStack(spacing: 7){
+            HStack(spacing: 5){
                 ForEach(morseCode.description.map { String($0) }, id: \.self) { code in
                     switch code {
                     case "•":
                         Circle()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.gray)
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(.pink)
                     case "-":
                         Capsule()
-                            .frame(width: 80, height: 50)
-                            .foregroundColor(.gray)
-                        
+                            .frame(width: 60, height: 35)
+                            .foregroundColor(.pink)
                     case " ":
                         Text(" ")
                     default:
@@ -45,11 +44,11 @@ struct MorseDetails: View {
                 Button {
                     flashMorseCode(morseCode: morseCode.description)
                 } label: {
-                    Image(systemName: "lightbulb.led.fill")
+                    Image(systemName: "lightbulb.led")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 60)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.black)
                 }
                 
                 // Sound
@@ -60,7 +59,7 @@ struct MorseDetails: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.black)
                 }
             }
             .padding(.top, 100)
@@ -77,8 +76,6 @@ struct MorseDetails: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background( LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.2), .indigo.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-            .ignoresSafeArea())
     }
 }
 

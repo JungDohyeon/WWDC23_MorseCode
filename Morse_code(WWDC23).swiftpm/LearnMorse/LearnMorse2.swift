@@ -17,9 +17,9 @@ struct LearnMorse2: View {
             
             VStack{
                 LinearGradient(
-                    colors: [.yellow, .green],
-                    startPoint: .leading,
-                    endPoint: .trailing
+                    colors: [.white, .pink],
+                    startPoint: .topLeading,
+                    endPoint: .bottom
                 )
                 .frame(width: isShow ? 600 : .infinity, height: isShow ? 200 : .infinity)
                 .mask(
@@ -30,7 +30,7 @@ struct LearnMorse2: View {
                 
                 if isNext {
                     NavigationLink(destination: LearnMorse2()) {
-                        NextBtn()
+                        NextBtn2()
                     }
                 }
             }

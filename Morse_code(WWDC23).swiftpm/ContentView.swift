@@ -22,8 +22,8 @@ struct ContentView: View {
                     
                     // Description
                     Text("This app is an app that allows you to learn about Morse code simply and generate Morse code yourself using the time you close your eyes and open them.")
-                        .font(.custom(.muktaRegular, size: 27))
-                        .foregroundColor(Color("myGray"))
+                        .font(.custom(.muktaRegular, size: 22))
+                        .foregroundColor(Color(red: 130/255, green: 130/255, blue: 130/255))
                         .multilineTextAlignment(.center)
                         .frame(width: 760)
                         .padding(.horizontal)
@@ -31,77 +31,77 @@ struct ContentView: View {
                     
                     
                     // Navigation Buttons
-                    HStack (spacing: 15) {
-                        NavigationLink(destination: LearnMorse1()) {
-                            VStack {
-                                Text("Learn about Morse Code")
-                                    .font(.custom(.muktaBold, size: 24))
-                                    .padding(.bottom, 16)
-                                
-                                Image(systemName: "book.closed")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 30)
-                            }
-                            .frame(width: 230, height: 180)
-                            .padding(12)
-                            .background(.black.opacity(0.75))
-                            .foregroundColor(.green)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 40)
-                                    .stroke(.green.opacity(0.5), lineWidth: 4)
-                            )
-                            .cornerRadius(40)
-                            .shadow(color: .green.opacity(0.2), radius: 7)
-                        }
-                        
-                        NavigationLink(destination: MorseCodeChart()) {
-                            VStack {
-                                Text("Morse Code \n Table")
-                                    .font(.custom(.muktaBold, size: 24))
-                                    .padding(.bottom, 16)
-                                
-                                Image(systemName: "tablecells")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 40)
-                            }
-                            .frame(width: 230, height: 180)
-                            .padding(12)
-                            .background(.black.opacity(0.75))
-                            .foregroundColor(.blue)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 40)
-                                    .stroke(.blue.opacity(0.5), lineWidth: 4)
-                            )
-                            .cornerRadius(40)
-                            .shadow(color: .blue.opacity(0.2), radius: 7)
-                        }
-                        
-                        
+                    VStack {
                         NavigationLink(destination: EyeblinkingMorse()) {
-                            VStack {
-                                Text("AR Eye Blinking to Morse Code")
-                                    .font(.custom(.muktaBold, size: 24))
-                                    .padding(.bottom, 16)
-                                
+                            HStack {
                                 Image(systemName: "waveform.and.magnifyingglass")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 40)
+                                    .frame(width: 45)
+                                    .padding(.trailing, 15)
+                                
+                                Text("AR Eye Blinking to Morse Code")
+                                    .font(.custom(.muktaBold, size: 25))
+                                
                             }
-                            .frame(width: 230, height: 180)
+                            .frame(width: 730, height: 70)
                             .padding(12)
-                            .background(.black.opacity(0.75))
-                            .foregroundColor(.purple)
+                            .background(.pink)
+                            .foregroundColor(.white)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 40)
-                                    .stroke(.purple.opacity(0.5), lineWidth: 4)
+                                RoundedRectangle(cornerRadius: 30)
+                                    .stroke(.pink, lineWidth: 5)
                             )
-                            .cornerRadius(40)
-                            .shadow(color: .purple.opacity(0.2), radius: 7)
+                            .cornerRadius(30)
                         }
-                    }.padding(.bottom, 24)
+                        .padding(.bottom, 20)
+                        
+                        HStack (spacing: 15) {
+                            NavigationLink(destination: LearnMorse1()) {
+                                HStack {
+                                    Image(systemName: "book.closed")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 30)
+                                        .padding(.trailing, 15)
+                                    
+                                    Text("About Morse Code")
+                                        .font(.custom(.muktaBold, size: 23))
+                                }
+                                .frame(width: 350, height: 50)
+                                .padding(10)
+                                .foregroundColor(Color("myGray"))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(Color("myGray"), lineWidth: 3)
+                                )
+                                .cornerRadius(25)
+                            }
+                            
+                            NavigationLink(destination: MorseCodeChart()) {
+                                HStack {
+                                    Image(systemName: "tablecells")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 35)
+                                        .padding(.trailing, 10)
+                                    
+                                    Text("Morse Code Table")
+                                        .font(.custom(.muktaBold, size: 23))
+                                    
+                                }
+                                .frame(width: 350, height: 50)
+                                .padding(12)
+                                .foregroundColor(Color("myGray"))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(Color("myGray"), lineWidth: 3)
+                                )
+                                .cornerRadius(25)
+                            }
+                        }.padding(.bottom, 10)
+                       
+                    }
                 }
             }
         }

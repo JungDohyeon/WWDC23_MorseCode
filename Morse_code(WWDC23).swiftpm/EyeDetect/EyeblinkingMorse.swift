@@ -16,12 +16,30 @@ struct EyeblinkingMorse: View {
                 .edgesIgnoringSafeArea(.all)
             
             HStack(spacing: 20) {
+                Button(action: {
+                    morseCode = ""
+                }) {
+                    Text("Clear!")
+                        .font(.custom(.muktaRegular, size: 23))
+                        .foregroundColor(.pink)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 3)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(.pink.opacity(0.8), lineWidth: 1)
+                        )
+                }
+                .padding(.leading, 20)
+                
+                
                 Spacer()
                 
                 Text(morseCode)
                     .font(.custom(.concertOne, size: 25))
                     .foregroundColor(.white)
                     .padding()
+                
+                Spacer()
                 
                 Button(action: {
                     if !morseCode.isEmpty {
@@ -31,23 +49,23 @@ struct EyeblinkingMorse: View {
                     Image(systemName: "delete.left")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 20)
+                        .frame(width: 23)
+                        .foregroundColor(.pink)
                 }
+            
                 
-                Button(action: {
-                    morseCode = ""
-                }) {
-                    Text("Clear!")
-                }
                 
                 Button(action: {
                     showModal.toggle()
                     isARSessionPausedSubmit = true
                 }) {
-                    Image(systemName: "lock.open.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24)
+                    Text("Decrypt!")
+                        .foregroundColor(Color("myGray"))
+                        .font(.custom(.concertOne, size: 25))
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(.pink)
+                        .cornerRadius(10)
                 }
                 .padding(.trailing, 20)
                 .sheet(isPresented: $showModal) {
@@ -56,11 +74,8 @@ struct EyeblinkingMorse: View {
                             isARSessionPausedSubmit = false
                         }
                 }
-                
-                Spacer()
             }
-
-                
+            .background(.black)
         }
         .navigationBarBackButtonHidden(true)
         .background(.black)
@@ -72,9 +87,10 @@ struct EyeblinkingMorse: View {
                         showHelp.toggle()
                         isARSessionPausedHelp = true
                     } label: {
-                        Image(systemName: "questionmark.circle")
+                        Image(systemName: "questionmark.circle.fill")
                             .resizable()
                             .scaledToFit()
+                            .foregroundColor(.pink)
                             .frame(width: 45)
                     }
                     .sheet(isPresented: $showHelp) {
@@ -83,7 +99,7 @@ struct EyeblinkingMorse: View {
                                 isARSessionPausedHelp = false
                             }
                     }
-                    trailingMenu2()
+                    trailingMenu1()
                 }
         )
     }

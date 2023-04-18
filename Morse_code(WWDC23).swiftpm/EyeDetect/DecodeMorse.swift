@@ -15,30 +15,24 @@ struct DecodeMorse: View {
     
     var body: some View {
         ZStack {
-            Color.green.opacity(0.1).ignoresSafeArea()
             VStack{
                 LinearGradient(
-                    colors: [.red, .green, .indigo, .black],
-                    startPoint: .leading,
-                    endPoint: .trailing
+                    colors: [.white, .pink],
+                    startPoint: .topLeading,
+                    endPoint: .bottom
                 )
                 .mask(
                     Text("After Decoding")
                         .font(Font.system(size: 50, weight: .bold))
                         .multilineTextAlignment(.center)
                 )
-                .frame(height: 150)
+                .frame(height: 200)
                 
                 HStack {
-                    Image(systemName: "lock.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.blue)
+                    Text("Morse Code")
+                        .foregroundColor(.pink)
+                        .font(.custom(.muktaBold, size: 20))
                         .padding(10)
-                        .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                         .padding(.leading, 20)
                         
                     Spacer()
@@ -51,21 +45,17 @@ struct DecodeMorse: View {
                 .frame(height: 60)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.white)
+                        .fill(.white)
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 )
                 .padding(.horizontal, 20)
                 
                 HStack {
-                    Image(systemName: "lock.open.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.blue)
+                    Text("Decryption")
+                        .foregroundColor(.pink)
+                        .font(.custom(.muktaBold, size: 20))
                         .padding(10)
-                        .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+        
                         .padding(.leading, 20)
                     
                     Spacer()
@@ -80,7 +70,7 @@ struct DecodeMorse: View {
                 .frame(height: 60)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.white)
+                        .fill(.white)
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 )
                 .padding(.horizontal, 20)
@@ -92,11 +82,11 @@ struct DecodeMorse: View {
                         Button {
                             flashMorseCode(morseCode: userInput)
                         } label: {
-                            Image(systemName: "lightbulb.led.fill")
+                            Image(systemName: "lightbulb.led")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.orange)
                         }
                         
                         // Sound
@@ -106,14 +96,13 @@ struct DecodeMorse: View {
                             Image(systemName: "waveform.circle")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 70)
-                                .foregroundColor(.blue)
+                                .frame(width: 60)
+                                .foregroundColor(.pink)
                         }
                     }
                     .padding(.top, 100)
                     .padding(.bottom, 30)
-                    
-                    // Icon Description
+    
                     HStack (spacing: 70) {
                         Text("Light Flash")
                             .font(.system(size: 20).weight(.black))

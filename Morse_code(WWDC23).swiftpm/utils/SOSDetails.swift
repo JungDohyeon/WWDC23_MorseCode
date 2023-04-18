@@ -10,7 +10,7 @@ import SwiftUI
 struct SOSDetails: View {
     var body: some View {
         ZStack {
-            Color.red.opacity(0.1).ignoresSafeArea()
+            // LinearGradient(colors: [.orange.opacity(0.3), .red.opacity(0.4)], startPoint: .topLeading, endPoint: .bottomTrailing)
             VStack {
                 Text("S O S")
                     .font(.system(size: 90).weight(.black))
@@ -21,20 +21,20 @@ struct SOSDetails: View {
                     ForEach(0..<3) { _ in
                         Circle()
                             .frame(width: 40, height: 40)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.black)
                     }
                    
                     Text(" ")
                     ForEach(0..<3) { _ in
                         Capsule()
                             .frame(width: 70, height: 40)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.black)
                     }
                     Text(" ")
                     ForEach(0..<3) { _ in
                         Circle()
                             .frame(width: 40, height: 40)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.black)
                     }
                 }
                 
@@ -42,11 +42,11 @@ struct SOSDetails: View {
                     Button {
                         flashMorseCode(morseCode: "••• --- •••")
                     } label: {
-                        Image(systemName: "lightbulb.led.fill")
+                        Image(systemName: "lightbulb.led")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 60)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.orange)
                     }
                     
                     Button {
@@ -56,7 +56,7 @@ struct SOSDetails: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 80)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.pink)
                     }
                 }
                 .padding(.top, 100)

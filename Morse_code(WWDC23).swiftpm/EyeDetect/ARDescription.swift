@@ -10,37 +10,37 @@ import SwiftUI
 struct ARDescription: View {
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+            Color.gray.opacity(0.4)
             VStack {
-                Text("How to Use")
-                    .font(Font.custom("HelveticaNeue-Bold", size: 60))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding()
+                LinearGradient(
+                    colors: [.white, .pink],
+                    startPoint: .topLeading,
+                    endPoint: .bottom
+                )
+                .mask(
+                    Text("How to Use")
+                        .font(Font.system(size: 50, weight: .bold))
+                        .multilineTextAlignment(.center)
+                )
+                .frame(height: 150)
                 
                 VStack {
                     Text("Instructions")
-                        .font(Font.custom("HelveticaNeue-Bold", size: 30))
+                        .font(Font.custom("HelveticaNeue-Bold", size: 25))
                         .foregroundColor(.white)
                         .padding(.top, 10)
+                        .padding(.bottom, 15)
                     
                     HStack {
-                        Image(systemName: "eye.fill")
-                            .font(.system(size: 25))
-                            .foregroundColor(.white)
                         Text("Look at the front camera")
-                            .font(Font.custom("HelveticaNeue", size: 20))
+                            .font(.custom(.muktaRegular, size: 20))
                             .foregroundColor(.white)
                             .padding(.leading, 10)
                     }
                     
                     HStack {
-                        Image(systemName: "eye.fill")
-                            .font(.system(size: 25))
-                            .foregroundColor(.white)
                         Text("Blink your eyes while staring at the screen")
-                            .font(Font.custom("HelveticaNeue", size: 20))
+                            .font(.custom(.muktaRegular, size: 20))
                             .foregroundColor(.white)
                             .padding(.leading, 10)
                     }
@@ -49,32 +49,45 @@ struct ARDescription: View {
                 
                 VStack {
                     Text("Input Rules")
-                        .font(Font.custom("HelveticaNeue-Bold", size: 30))
+                        .font(Font.custom("HelveticaNeue-Bold", size: 25))
                         .foregroundColor(.white)
                         .padding(.bottom, 20)
                     
                     HStack {
                         Circle()
-                            .frame(width: 25, height: 25)
+                            .frame(width: 22, height: 22)
                             .foregroundColor(.white)
                             .overlay(Circle().stroke(Color.gray, lineWidth: 2))
                             .padding(.trailing, 10)
-                        Text("Close your eyes and open them before 0.4 seconds.")
-                            .font(Font.custom("HelveticaNeue", size: 20))
-                            .foregroundColor(.white)
-                            .padding(.leading, 10)
+                        HStack {
+                            Text("Close your eyes and open them")
+                                .font(.custom(.muktaRegular, size: 20))
+                                .foregroundColor(.white)
+                                .padding(.leading, 10)
+                            Text("before 0.4 seconds.")
+                                .font(.custom(.muktaBold, size: 20))
+                                .foregroundColor(.red)
+                                .padding(.leading, 2)
+                        }
+                       
                     }
                     
                     HStack {
                         Capsule()
-                            .frame(width: 80, height: 40)
+                            .frame(width: 50, height: 25)
                             .foregroundColor(.white)
                             .overlay(Capsule().stroke(Color.gray, lineWidth: 2))
                             .padding(.trailing, 10)
-                        Text("Close your eyes and open them after 0.4 seconds.")
-                            .font(Font.custom("HelveticaNeue", size: 20))
-                            .foregroundColor(.white)
-                            .padding(.leading, 10)
+                        HStack {
+                            Text("Close your eyes and open them")
+                                .font(.custom(.muktaRegular, size: 20))
+                                .foregroundColor(.white)
+                                .padding(.leading, 10)
+                            Text("after 0.4 seconds.")
+                                .font(.custom(.muktaBold, size: 20))
+                                .foregroundColor(.red)
+                                .padding(.leading, 2)
+                        }
                     }
                 }
                 .padding()

@@ -29,11 +29,11 @@ struct MorseCard: View {
                 
                 Text(morseCode.description)
                     .font(.body)
-                    .foregroundColor(.white)
+                    .foregroundColor(.pink)
                     .multilineTextAlignment(.center)
             }
             .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [Color(red: 101/255, green: 121/255, blue: 155/255), Color(red: 94/255, green: 27/255, blue: 99/255)]), startPoint: .top, endPoint: .bottomTrailing))
+            .background(.gray.opacity(0.4))
             .cornerRadius(20)
             .sheet(isPresented: $isShowingDetails) {
                 MorseDetails(morseCode: morseCode)

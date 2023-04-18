@@ -53,9 +53,9 @@ struct MorseGrid: View {
             
             ScrollView {
                 LinearGradient(
-                    colors: [.blue.opacity(0.4), .blue, .indigo, .purple],
-                    startPoint: .leading,
-                    endPoint: .trailing
+                    colors: [.white, .pink],
+                    startPoint: .topLeading,
+                    endPoint: .bottom
                 )
                 .mask(
                     Text("Morse Code Chart")
@@ -64,7 +64,7 @@ struct MorseGrid: View {
                 )
                 .frame(width: 800, height: 100)
                 
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),  GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()),GridItem(.flexible()),GridItem(.flexible()),GridItem(.flexible()),GridItem(.flexible())], spacing: 20) {
                     ForEach(morseCodes, id: \.self) { morseCode in
                         MorseCard(morseCode: morseCode)
                     }
@@ -74,7 +74,7 @@ struct MorseGrid: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(
                 leading: leadingMenu(),
-                trailing: trailingMenu2()
+                trailing: trailingMenu1()
             )
         }
     }
