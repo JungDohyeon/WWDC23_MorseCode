@@ -10,11 +10,11 @@ import SwiftUI
 struct leadingMenu: View {
     var body: some View {
         NavigationLink(destination: ContentView()) {
-            Image(systemName: "house")
+            Image(systemName: "house.fill")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 30)
-                .foregroundColor(Color("myGray"))
+                .foregroundColor(Color("myDarkGray"))
                 .padding(.leading, 10)
         }
     }
@@ -32,9 +32,9 @@ struct trailingMenu1: View {
                 Text("SOS")
                     .font(.custom(.muktaBold, size: 20))
                     .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
+                    .padding(.vertical, 2)
                     .background(.red)
-                    .foregroundColor(Color("myGray"))
+                    .foregroundColor(.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 40)
                             .stroke(.red.opacity(0.6), lineWidth: 5)

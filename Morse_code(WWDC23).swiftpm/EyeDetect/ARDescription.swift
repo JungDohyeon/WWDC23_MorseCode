@@ -8,89 +8,111 @@
 import SwiftUI
 
 struct ARDescription: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ZStack {
-            Color.gray.opacity(0.4)
             VStack {
-                LinearGradient(
-                    colors: [.white, .pink],
-                    startPoint: .topLeading,
-                    endPoint: .bottom
-                )
-                .mask(
-                    Text("How to Use")
-                        .font(Font.system(size: 50, weight: .bold))
-                        .multilineTextAlignment(.center)
-                )
-                .frame(height: 150)
+                Text("How to Use ?")
+                    .font(Font.system(size: 50, weight: .bold))
+                    .foregroundColor(.black)
+                
                 
                 VStack {
-                    Text("Instructions")
-                        .font(Font.custom("HelveticaNeue-Bold", size: 25))
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
-                        .padding(.bottom, 15)
-                    
-                    HStack {
-                        Text("Look at the front camera")
-                            .font(.custom(.muktaRegular, size: 20))
-                            .foregroundColor(.white)
-                            .padding(.leading, 10)
-                    }
-                    
-                    HStack {
-                        Text("Blink your eyes while staring at the screen")
-                            .font(.custom(.muktaRegular, size: 20))
-                            .foregroundColor(.white)
-                            .padding(.leading, 10)
-                    }
-                    .padding(.bottom, 50)
-                }
-                
-                VStack {
-                    Text("Input Rules")
-                        .font(Font.custom("HelveticaNeue-Bold", size: 25))
-                        .foregroundColor(.white)
-                        .padding(.bottom, 20)
-                    
-                    HStack {
-                        Circle()
-                            .frame(width: 22, height: 22)
-                            .foregroundColor(.white)
-                            .overlay(Circle().stroke(Color.gray, lineWidth: 2))
-                            .padding(.trailing, 10)
+                    VStack (spacing: -5) {
                         HStack {
-                            Text("Close your eyes and open them")
-                                .font(.custom(.muktaRegular, size: 20))
-                                .foregroundColor(.white)
-                                .padding(.leading, 10)
-                            Text("before 0.4 seconds.")
-                                .font(.custom(.muktaBold, size: 20))
-                                .foregroundColor(.red)
-                                .padding(.leading, 2)
+                            Circle()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.pink)
+                                .overlay(Circle().stroke(Color.pink, lineWidth: 2))
+                            Text("Dot")
+                                .font(.custom(.concertOne, size: 30))
+                                .foregroundColor(.pink)
                         }
                        
-                    }
-                    
-                    HStack {
-                        Capsule()
-                            .frame(width: 50, height: 25)
-                            .foregroundColor(.white)
-                            .overlay(Capsule().stroke(Color.gray, lineWidth: 2))
-                            .padding(.trailing, 10)
                         HStack {
                             Text("Close your eyes and open them")
                                 .font(.custom(.muktaRegular, size: 20))
-                                .foregroundColor(.white)
-                                .padding(.leading, 10)
+                                .foregroundColor(.black)
+                            Text("before 0.4 seconds.")
+                                .font(.custom(.muktaBold, size: 20))
+                                .foregroundColor(.black)
+                        }
+                    }
+                    .padding(15)
+                    
+                    VStack (spacing: -5) {
+                        HStack {
+                            Capsule()
+                                .frame(width: 50, height: 20)
+                                .foregroundColor(.pink)
+                                .overlay(Capsule().stroke(Color.pink, lineWidth: 2))
+                            Text("Dash")
+                                .font(.custom(.concertOne, size: 30))
+                                .foregroundColor(.pink)
+                        }
+                       
+                        HStack {
+                            Text("Close your eyes and open them")
+                                .font(.custom(.muktaRegular, size: 20))
+                                .foregroundColor(.black)
                             Text("after 0.4 seconds.")
                                 .font(.custom(.muktaBold, size: 20))
-                                .foregroundColor(.red)
-                                .padding(.leading, 2)
+                                .foregroundColor(.black)
+                        }
+                    }
+                    .padding(.bottom, 15)
+                    
+                    VStack {
+                        Text("\" \" (Character Separation - Single Space) ")
+                            .font(.custom(.concertOne, size: 30))
+                            .foregroundColor(.pink)
+                          
+                        VStack {
+                            Text("Keeping the time between eye closing and closing time")
+                                .font(.custom(.muktaRegular, size: 20))
+                                .foregroundColor(.black)
+                            Text("between 0.7 seconds and less than 1.3 seconds")
+                                .font(.custom(.muktaBold, size: 20))
+                                .foregroundColor(.black)
+                        }
+                    }
+                    .padding(.bottom, 15)
+                    
+                    VStack {
+                        Text("\"  \" (Word Separation - Double Space) ")
+                            .font(.custom(.concertOne, size: 30))
+                            .foregroundColor(.pink)
+                            
+                        HStack {
+                            Text("Keep eyes open for at least")
+                                .font(.custom(.muktaRegular, size: 20))
+                                .foregroundColor(.black)
+                            Text("1.3 seconds between eyes closed")
+                                .font(.custom(.muktaBold, size: 20))
+                                .foregroundColor(.black)
                         }
                     }
                 }
+                .multilineTextAlignment(.center)
                 .padding()
+                
+                Spacer()
+                    .frame(height: 70)
+                
+                Button {
+                    dismiss()
+                } label: {
+                    Text("Let's experience!")
+                        .foregroundColor(.white)
+                        .font(.custom(.concertOne, size: 35))
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(.pink)
+                        .cornerRadius(10)
+                }
+                .padding(.bottom, 15)
+
             }
         }
     }

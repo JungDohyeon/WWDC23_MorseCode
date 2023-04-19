@@ -48,22 +48,21 @@ struct DecodeMorse: View {
                         .fill(.white)
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 )
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 40)
                 
                 HStack {
                     Text("Decryption")
                         .foregroundColor(.pink)
                         .font(.custom(.muktaBold, size: 20))
                         .padding(10)
-        
                         .padding(.leading, 20)
                     
                     Spacer()
                     
                     Text(decodeMorseCode(morseCode: userInput))
                         .font(.custom(.concertOne, size: 25))
-                        .foregroundColor(decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CHARACTER!" ? .green : .red)
-                        .padding(.horizontal, 20)
+                        .foregroundColor(decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CHARACTER!" ? .blue : .red)
+                        .padding(.horizontal, 40)
                     
                     Spacer()
                 }
@@ -73,11 +72,11 @@ struct DecodeMorse: View {
                         .fill(.white)
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 )
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 40)
                 
                 if decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CHARACTER!" {
                     // Flash & Sound
-                    HStack (spacing: 110) {
+                    HStack (spacing: 120) {
                         // Flash
                         Button {
                             flashMorseCode(morseCode: userInput)
@@ -86,7 +85,7 @@ struct DecodeMorse: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50)
-                                .foregroundColor(.orange)
+                                .foregroundColor(.black)
                         }
                         
                         // Sound
@@ -97,11 +96,11 @@ struct DecodeMorse: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 60)
-                                .foregroundColor(.pink)
+                                .foregroundColor(.black)
                         }
                     }
-                    .padding(.top, 100)
-                    .padding(.bottom, 30)
+                    .padding(.top, 50)
+                    .padding(.bottom, 40)
     
                     HStack (spacing: 70) {
                         Text("Light Flash")
@@ -111,6 +110,30 @@ struct DecodeMorse: View {
                             .font(.system(size: 20).weight(.black))
                             .foregroundColor(.black)
                     }
+                    .padding(.bottom, 30)
+                    
+                    Button {
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: "arrow.clockwise.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.white)
+                                .padding(10)
+                                .background(Color.red)
+                                .clipShape(Circle())
+                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                            
+                            Text("Retry")
+                                .font(.custom(.concertOne, size: 25))
+                                .foregroundColor(.red)
+                                .padding(.horizontal, 10)
+                        }
+                        .padding(.bottom, 15)
+                    }
+                    
                 } else {
                     Button {
                         dismiss()
@@ -197,10 +220,3 @@ func decodeMorseCode(morseCode: String) -> String {
 
     return decodedString.trimmingCharacters(in: .whitespaces)
 }
-
-
-//struct DecodeMorse_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DecodeMorse()
-//    }
-//}

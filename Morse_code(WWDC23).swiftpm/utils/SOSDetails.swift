@@ -8,56 +8,62 @@
 import SwiftUI
 
 struct SOSDetails: View {
+    @State var isFlashButtonDisabled = false
+    @State var isSoundButtonDisabled = false
+    
     var body: some View {
         ZStack {
-            // LinearGradient(colors: [.orange.opacity(0.3), .red.opacity(0.4)], startPoint: .topLeading, endPoint: .bottomTrailing)
             VStack {
                 Text("S O S")
                     .font(.system(size: 90).weight(.black))
-                    .foregroundColor(.red)
+                    .foregroundColor(.black)
                     .padding(.bottom, 50)
                 
                 HStack(spacing: 10){
                     ForEach(0..<3) { _ in
                         Circle()
                             .frame(width: 40, height: 40)
-                            .foregroundColor(.black)
+                            .foregroundColor(.red)
                     }
                    
                     Text(" ")
                     ForEach(0..<3) { _ in
                         Capsule()
                             .frame(width: 70, height: 40)
-                            .foregroundColor(.black)
+                            .foregroundColor(.red)
                     }
                     Text(" ")
                     ForEach(0..<3) { _ in
                         Circle()
                             .frame(width: 40, height: 40)
-                            .foregroundColor(.black)
+                            .foregroundColor(.red)
                     }
                 }
                 
                 HStack (spacing: 110) {
                     Button {
                         flashMorseCode(morseCode: "••• --- •••")
+                        isSoundButtonDisabled = true
                     } label: {
                         Image(systemName: "lightbulb.led")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 60)
-                            .foregroundColor(.orange)
+                            .foregroundColor(.black)
                     }
+                    .disabled(isFlashButtonDisabled)
                     
                     Button {
                         MorseCodePlayer().playCode(code: "••• --- •••")
+                        isFlashButtonDisabled = true
                     } label: {
                         Image(systemName: "waveform.circle")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 80)
-                            .foregroundColor(.pink)
+                            .foregroundColor(.black)
                     }
+                    .disabled(isSoundButtonDisabled)
                 }
                 .padding(.top, 100)
                 .padding(.bottom, 30)

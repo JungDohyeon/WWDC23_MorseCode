@@ -62,7 +62,7 @@ struct ContentView: View {
                                     Image(systemName: "book.closed")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 30)
+                                        .frame(width: 20)
                                         .padding(.trailing, 15)
                                     
                                     Text("About Morse Code")

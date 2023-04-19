@@ -21,32 +21,43 @@ struct LearnMorse1: View {
                     startPoint: .topLeading,
                     endPoint: .bottom
                 )
-                .frame(width: isShow ? 600 : .infinity, height: isShow ? 200 : .infinity)
+                .frame(height: isShow ? 100 : .infinity)
                 .mask(
                     Text("About Morse Code")
-                        .font(Font.system(size: 50, weight: .bold))
-                        .multilineTextAlignment(.center)
+                        .font(Font.system(size: 60, weight: .bold))
                 )
-                
+            
                 
                 if isShow {
-                    Text(" The term Morse code refers to one of two systems for representing alphabetic letters, numbers, and symbols, etc., as arrangements of dots, dashes, and spaces. \n\n Codes are transmitted as visual or audible signals, such as electrical pulses of varying length or flashing lights.")
-                        .font(.custom(.muktaRegular, size: 27))
-                        .foregroundColor(Color("myGray"))
-                        .padding(.top, 50)
-                        .padding(.horizontal, 40)
+                    VStack {
+                        HStack {
+                            Text("The term **Morse code** refers to one of two systems for representing alphabetic letters, numbers, and symbols, etc., as arrangements of dots, dashes, and spaces.")
+                                .font(.custom(.muktaRegular, size: 30))
+                                .padding(.bottom, 30)
+                        }
+                        Text(" Codes are transmitted as visual or audible signals, such as electrical pulses of varying length or flashing lights.")
+                            .font(.custom(.muktaRegular, size: 30))
+                    }
+                    .foregroundColor(Color("myGray"))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 60)
+                    .onAppear {
+                        withAnimation(.easeInOut(duration: 2).delay(2)) {
+                            isNext = true
+                        }
+                    }
+                    
                 }
                 
                 if isNext {
+                    Spacer()
+                        .frame(height: 60)
                     NextBtn1()
                 }
             }
             .onAppear {
                 withAnimation(.easeInOut(duration: 1).delay(1)) {
                     isShow = true
-                }
-                withAnimation(.easeInOut(duration: 2).delay(2)) {
-                    isNext = true
                 }
             }
         }
@@ -58,6 +69,7 @@ struct LearnMorse1: View {
     }
 }
 
+
 // Page Next Btn
 struct NextBtn1: View {
     @Environment(\.presentationMode) var presentationMode
@@ -68,7 +80,7 @@ struct NextBtn1: View {
                 
                 NavigationLink(destination: LearnMorse2()) {
                     Text("Next")
-                        .font(.system(size: 20, design: .monospaced))
+                        .font(.system(size: 15, design: .monospaced))
                         .foregroundColor(Color("myDarkGray"))
                         .padding(.trailing, 5)
                     Image(systemName: "chevron.right.2")
@@ -79,7 +91,7 @@ struct NextBtn1: View {
                         .foregroundColor(Color("myDarkGray"))
                 }
             }
-            .frame(height: 100)
+            .frame(height: 70)
         }
     }
 }
@@ -102,7 +114,7 @@ struct NextBtn2: View {
                         .foregroundColor(Color("myDarkGray"))
                         .padding(.trailing, 5)
                     Text("Before")
-                        .font(.system(size: 20, design: .monospaced))
+                        .font(.system(size: 15, design: .monospaced))
                         .foregroundColor(Color("myDarkGray"))
                 }
                 
@@ -110,7 +122,7 @@ struct NextBtn2: View {
                 
                 NavigationLink(destination: LearnMorse2()) {
                     Text("Next")
-                        .font(.system(size: 20, design: .monospaced))
+                        .font(.system(size: 15, design: .monospaced))
                         .foregroundColor(Color("myDarkGray"))
                         .padding(.trailing, 5)
                     Image(systemName: "chevron.right.2")
@@ -121,7 +133,7 @@ struct NextBtn2: View {
                         .foregroundColor(Color("myDarkGray"))
                 }
             }
-            .frame(height: 100)
+            .frame(height: 70)
         }
     }
 }

@@ -6,9 +6,10 @@ struct EyeblinkingMorse: View {
     @State private var morseCode: String = ""
     @State private var isARSessionPausedSubmit = false
     @State private var showModal = false
+    @State private var showSOS = false
     
-    @State private var isARSessionPausedHelp = false
-    @State private var showHelp = false
+    @State private var isARSessionPausedHelp = true
+    @State private var showHelp = true
     
     var body: some View {
         VStack {
@@ -60,7 +61,7 @@ struct EyeblinkingMorse: View {
                     isARSessionPausedSubmit = true
                 }) {
                     Text("Decrypt!")
-                        .foregroundColor(Color("myGray"))
+                        .foregroundColor(.white)
                         .font(.custom(.concertOne, size: 25))
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
@@ -99,7 +100,29 @@ struct EyeblinkingMorse: View {
                                 isARSessionPausedHelp = false
                             }
                     }
-                    trailingMenu1()
+                    
+                    Button {
+                        showSOS.toggle()
+                        isARSessionPausedHelp = true
+                    } label: {
+                        Text("SOS")
+                            .font(.custom(.muktaBold, size: 20))
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                            .background(.red)
+                            .foregroundColor(.white)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 40)
+                                    .stroke(.red.opacity(0.6), lineWidth: 5)
+                            )
+                            .cornerRadius(10)
+                    }
+                    .sheet(isPresented: $showSOS) {
+                        SOSDetails()
+                            .onDisappear {
+                                isARSessionPausedHelp = false
+                        }
+                    }
                 }
         )
     }
