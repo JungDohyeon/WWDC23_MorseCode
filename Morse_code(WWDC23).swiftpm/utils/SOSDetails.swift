@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SOSDetails: View {
-    @State var isFlashButtonDisabled = false
-    @State var isSoundButtonDisabled = false
+    @State var isFlashEnabled = true
+    @State var isSoundEnabled = true
     
     var body: some View {
         ZStack {
@@ -43,7 +43,10 @@ struct SOSDetails: View {
                 HStack (spacing: 110) {
                     Button {
                         flashMorseCode(morseCode: "••• --- •••")
-                        isSoundButtonDisabled = true
+                        isSoundEnabled = false
+                        DispatchQueue.main.asyncAfter(deadline:  .now() + 4) {
+                            isSoundEnabled  = true
+                        }
                     } label: {
                         Image(systemName: "lightbulb.led")
                             .resizable()
@@ -51,11 +54,14 @@ struct SOSDetails: View {
                             .frame(width: 60)
                             .foregroundColor(.black)
                     }
-                    .disabled(isFlashButtonDisabled)
+                    .disabled(!isFlashEnabled)
                     
                     Button {
                         MorseCodePlayer().playCode(code: "••• --- •••")
-                        isFlashButtonDisabled = true
+                        isFlashEnabled = false
+                        DispatchQueue.main.asyncAfter(deadline:  .now() + 4) {
+                            isFlashEnabled  = true
+                        }
                     } label: {
                         Image(systemName: "waveform.circle")
                             .resizable()
@@ -63,7 +69,7 @@ struct SOSDetails: View {
                             .frame(width: 80)
                             .foregroundColor(.black)
                     }
-                    .disabled(isSoundButtonDisabled)
+                    .disabled(!isSoundEnabled)
                 }
                 .padding(.top, 100)
                 .padding(.bottom, 30)

@@ -9,7 +9,10 @@ import SwiftUI
 
 struct DecodeMorse: View {
     @Binding var userInput: String
-    @State private var validation = false
+    
+    @State private var isSoundEnabled = true
+    @State private var isLightEnabled = true
+    
     var userDecode: String = ""
     @Environment(\.dismiss) var dismiss
     
@@ -80,6 +83,10 @@ struct DecodeMorse: View {
                         // Flash
                         Button {
                             flashMorseCode(morseCode: userInput)
+                            isSoundEnabled = false
+                            DispatchQueue.main.asyncAfter(deadline:  .now() + 3) {
+                                isSoundEnabled  = true
+                            }
                         } label: {
                             Image(systemName: "lightbulb.led")
                                 .resizable()
@@ -98,6 +105,7 @@ struct DecodeMorse: View {
                                 .frame(width: 60)
                                 .foregroundColor(.black)
                         }
+                        .disabled(!isSoundEnabled)
                     }
                     .padding(.top, 50)
                     .padding(.bottom, 40)

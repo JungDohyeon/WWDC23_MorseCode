@@ -34,7 +34,7 @@ struct ContentView: View {
                     VStack {
                         NavigationLink(destination: EyeblinkingMorse()) {
                             HStack {
-                                Image(systemName: "waveform.and.magnifyingglass")
+                                Image(systemName: "keyboard.badge.eye")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 45)

@@ -11,10 +11,52 @@ struct EyeblinkingMorse: View {
     @State private var isARSessionPausedHelp = true
     @State private var showHelp = true
     
+    @State var elapsedTimeBlink: TimeInterval = 0
+    @State var elapsedTimeBetweenBlink: TimeInterval = 0
+    
+    // blink time
+    @State private var timeBlink: Double = 0.00
+    @State private var timerBlink: Timer? = nil
+    
+    // blank time
+    @State private var timeBlank: Double = 0.00
+    @State private var timerBlank: Timer? = nil
+    
     var body: some View {
+        
         VStack {
-            ARViewContainer(morseCode: $morseCode, isPausedSubmit: $isARSessionPausedSubmit, isPausedHelp: $isARSessionPausedHelp)
-                .edgesIgnoringSafeArea(.all)
+            ZStack {
+                ARViewContainer(morseCode: $morseCode, isPausedSubmit: $isARSessionPausedSubmit, isPausedHelp: $isARSessionPausedHelp, blinkBinding: $timerBlink, blankBinding: $timerBlank , timeblink: $timeBlink, timeblank: $timeBlank)
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    HStack() {
+                            Text("Blink Time: ")
+                                .foregroundColor(.white)
+                            
+                            Text(String(format:"%.2f", timeBlink))
+                                .foregroundColor(.pink)
+                                .padding(.trailing, 20)
+                        
+                            Text("Eye Opening Time: ")
+                                .foregroundColor(.white)
+                            
+                            Text(String(format:"%.2f", timeBlank))
+                                .foregroundColor(.pink)
+                        
+                    }
+                    .frame(width: 500, height: 50)
+                    .font(.custom(.muktaBold, size: 20))
+                    .background(.black)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(.black, lineWidth: 5)
+                    )
+                    .cornerRadius(30)
+                    
+                    Spacer()
+                }
+            }
             
             HStack(spacing: 20) {
                 Button(action: {
@@ -88,10 +130,10 @@ struct EyeblinkingMorse: View {
                         showHelp.toggle()
                         isARSessionPausedHelp = true
                     } label: {
-                        Image(systemName: "questionmark.circle.fill")
+                        Image(systemName: "questionmark.circle")
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(.pink)
+                            .foregroundColor(.white)
                             .frame(width: 45)
                     }
                     .sheet(isPresented: $showHelp) {

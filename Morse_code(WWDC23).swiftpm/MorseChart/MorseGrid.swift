@@ -58,7 +58,7 @@ struct MorseGrid: View {
                     endPoint: .bottom
                 )
                 .mask(
-                    Text("Morse Code Chart")
+                    Text("Morse Code Table")
                         .font(Font.system(size: 46, weight: .bold))
                         .multilineTextAlignment(.center)
                 )

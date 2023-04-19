@@ -13,7 +13,7 @@ struct ARDescription: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("How to Use ?")
+                Text("How to Use")
                     .font(Font.system(size: 50, weight: .bold))
                     .foregroundColor(.black)
                 

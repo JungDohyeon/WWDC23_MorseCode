@@ -14,7 +14,7 @@ struct leadingMenu: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 30)
-                .foregroundColor(Color("myDarkGray"))
+                .foregroundColor(.white)
                 .padding(.leading, 10)
         }
     }

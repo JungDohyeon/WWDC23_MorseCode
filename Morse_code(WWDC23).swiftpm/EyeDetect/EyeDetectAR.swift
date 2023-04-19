@@ -14,6 +14,11 @@ struct ARViewContainer: UIViewRepresentable {
     @Binding var isPausedSubmit: Bool
     @Binding var isPausedHelp: Bool
     
+    @Binding var blinkBinding: Timer?
+    @Binding var blankBinding: Timer?
+    @Binding var timeblink: Double
+    @Binding var timeblank: Double
+    
     func makeUIView(context: Context) -> ARView {
         let arView = ARView(frame: .zero)
         let config = ARFaceTrackingConfiguration()
@@ -46,6 +51,9 @@ struct ARViewContainer: UIViewRepresentable {
         var latestBlink: Date?
         var morseCode: String = ""
         
+        var blinkTime: Double = 0.00
+        var blankTime: Double = 0.00
+    
         init(parent: ARViewContainer) {
             self.parent = parent
         }
@@ -61,14 +69,20 @@ struct ARViewContainer: UIViewRepresentable {
             rightEyeBlinkValue = faceAnchor.blendShapes[.eyeBlinkRight]?.floatValue ?? 0.0
             
             if leftEyeBlinkValue > eyeCloseThreshHold && rightEyeBlinkValue > eyeCloseThreshHold  {
+                
                 if blinkStartedAt == nil {
                     blinkStartedAt = Date()
                     if blinkEndedAt != nil {
-                        // 단어 사이 간격
+                        
+                        parent?.blinkBinding = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { [self] _ in
+                            parent?.timeblink += 0.01
+                        })
+                        parent?.blankBinding?.invalidate()
+                        parent?.timeblank = 0.00
+                        
                         if blinkStartedAt!.timeIntervalSince(blinkEndedAt!) >= 1.3 {
                             parent?.$morseCode.wrappedValue += "  "
                         }
-                        // 문자 사이 간격
                         else if blinkStartedAt!.timeIntervalSince(blinkEndedAt!) >= 0.7 {
                             parent?.$morseCode.wrappedValue += " "
                         }
@@ -78,9 +92,15 @@ struct ARViewContainer: UIViewRepresentable {
                 if let startedAt = blinkStartedAt {
                     blinkEndedAt = Date()
                     let blinkDuration = blinkEndedAt!.timeIntervalSince(startedAt)
-                    // 0.4초 기준으로 단, 장음 판단.
                     let morseSymbol = blinkDuration > 0.4 ? "-" : "•"
                     parent?.$morseCode.wrappedValue += morseSymbol
+                    
+                    parent?.blinkBinding?.invalidate()
+                    parent?.timeblink = 0.00
+                    
+                    parent?.blankBinding = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { [self] _ in
+                        parent?.timeblank += 0.01
+                    })
                 }
                 blinkStartedAt = nil
             }
