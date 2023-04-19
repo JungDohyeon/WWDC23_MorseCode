@@ -65,7 +65,7 @@ struct ContentView: View {
                                         .frame(width: 20)
                                         .padding(.trailing, 15)
                                     
-                                    Text("About Morse Code")
+                                    Text("About Morse Eye")
                                         .font(.custom(.muktaBold, size: 23))
                                 }
                                 .frame(width: 350, height: 50)

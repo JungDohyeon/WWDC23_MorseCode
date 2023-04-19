@@ -23,7 +23,7 @@ struct LearnMorse3: View {
                 )
                 .frame(height: isShow ? 200 : .infinity)
                 .mask(
-                    Text("About this App")
+                    Text("About Morse Eye")
                         .font(Font.system(size: 50, weight: .bold))
                         .multilineTextAlignment(.center)
                 )
