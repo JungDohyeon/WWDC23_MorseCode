@@ -64,7 +64,7 @@ struct DecodeMorse: View {
                     
                     Text(decodeMorseCode(morseCode: userInput))
                         .font(.custom(.concertOne, size: 25))
-                        .foregroundColor(decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CHARACTER!" ? .blue : .red)
+                        .foregroundColor(decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CODE!" ? .blue : .red)
                         .padding(.horizontal, 40)
                     
                     Spacer()
@@ -77,7 +77,7 @@ struct DecodeMorse: View {
                 )
                 .padding(.horizontal, 40)
                 
-                if decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CHARACTER!" {
+                if decodeMorseCode(morseCode: userInput) != "Input has UNDEFINED CODE!" {
                     // Flash & Sound
                     HStack (spacing: 120) {
                         // Flash
@@ -220,7 +220,7 @@ func decodeMorseCode(morseCode: String) -> String {
             if let decodedChar = morseCodeMapping[String(code)] {
                 decodedString += decodedChar
             } else {
-                return "Input has UNDEFINED CHARACTER!"
+                return "Input has UNDEFINED CODE!"
             }
         }
         decodedString += " "
