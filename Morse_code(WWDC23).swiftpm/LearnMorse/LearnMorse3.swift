@@ -31,6 +31,7 @@ struct LearnMorse3: View {
                 if isShow {
                     VStack (spacing: 30) {
                         HStack {
+                            Spacer()
                             Text("SOS")
                                 .font(.custom(.muktaBold, size: 20))
                                 .padding(.horizontal, 10)
@@ -45,33 +46,37 @@ struct LearnMorse3: View {
                                 .padding(.trailing, 10)
                         
                             Text("SOS is a distress signal derived from Morse code. \nYou can immediately send an emergency signal by pressing the corresponding button.")
+                            Spacer()
                         }
                         
                         HStack {
+                            Spacer()
                             Image(systemName: "lightbulb.led")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 35)
                                 .foregroundColor(.white)
                                 .padding(.trailing, 20)
-                                .padding(.leading, 30)
                         
                             Text("If you click the corresponding icon, Morse code is displayed using the light of the device.")
+                            Spacer()
                         }
                         
                         HStack {
+                            Spacer()
                             Image(systemName: "waveform.circle")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 45)
                                 .foregroundColor(.white)
                                 .padding(.trailing, 15)
-                                .padding(.leading, 50)
                             
                             Text("If you click the corresponding icon, Morse code is expressed as a specific mechanical sound.")
+                            Spacer()
                         }
                         
                         HStack {
+                            Spacer()
                             Image(systemName: "tablecells")
                                 .resizable()
                                 .scaledToFit()
@@ -84,12 +89,13 @@ struct LearnMorse3: View {
                                 )
                                 .cornerRadius(10)
                                 .padding(.trailing, 10)
-                                .padding(.leading, 70)
                             
                             Text("This is a page where you can visually and audibly learn Morse code for each letter. (light, sound)")
+                            Spacer()
                         }
                         
                         HStack {
+                            Spacer()
                             Image(systemName: "keyboard.badge.eye")
                                 .resizable()
                                 .scaledToFit()
@@ -102,10 +108,10 @@ struct LearnMorse3: View {
                                         .stroke(.pink, lineWidth: 5)
                                 )
                                 .cornerRadius(10)
-                                .padding(.leading, 20)
                                 .padding(.trailing, 10)
                             
                             Text("This function generates Morse code by detecting the user's eyes through the AR camera.")
+                            Spacer()
                         }
                     }
                     .foregroundColor(Color("myGray"))
