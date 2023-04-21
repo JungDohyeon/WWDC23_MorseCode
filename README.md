@@ -15,4 +15,4 @@ In addition to AR technology, there are cards where you can practice Morse code 
 
 
 ## 📌 Target Device
-The Moss Eye app is a unique application that draws inspiration from prisoners of war using Moss code to deliver messages through flickers. It gives users the opportunity to learn and experience the skills of Morse code communication in a unique and innovative way. Compatibility designed specifically for the iPad allows users to take full advantage of the app's capabilities in an 11-inch iPad model. To ensure a smooth learning experience, I strongly recommend using the app on the iPad.
+The Moss Eye app is a unique application that draws inspiration from prisoners of war using Moss code to deliver messages through flickers. It gives users the opportunity to learn and experience the skills of Morse code communication in a unique and innovative way. Compatibility designed specifically for the iPad allows users to take full advantage of the app's capabilities in an <strong>11-inch iPad model</strong>. To ensure a smooth learning experience, I strongly recommend using the app on the iPad.
