@@ -1,5 +1,5 @@
 # WWDC23_MorseCode
-Project for WWDC23 Student Challenge <br>
+Project for WWDC23 Student Challenge [Accepted] <br>
 (Introduce Morse Code & Turn the time you open your eyes with AR camera into Morse code)
 <br>
 <br>
