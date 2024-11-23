@@ -16,7 +16,7 @@ let package = Package(
         .iOSApplication(
             name: "Morse_code(WWDC23)",
             targets: ["AppModule"],
-            bundleIdentifier: "dohyeon.Morse-code-WWDC23-",
+            bundleIdentifier: "dohyeon.Morse-code-WWDC23",
             teamIdentifier: "N8RU5UJH68",
             displayVersion: "1.0",
             bundleVersion: "1",

@@ -69,7 +69,6 @@ struct ARViewContainer: UIViewRepresentable {
             rightEyeBlinkValue = faceAnchor.blendShapes[.eyeBlinkRight]?.floatValue ?? 0.0
             
             if leftEyeBlinkValue > eyeCloseThreshHold && rightEyeBlinkValue > eyeCloseThreshHold  {
-                
                 if blinkStartedAt == nil {
                     blinkStartedAt = Date()
                     if blinkEndedAt != nil {
